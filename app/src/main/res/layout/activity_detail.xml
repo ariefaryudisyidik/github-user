@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".ui.detail.DetailActivity">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/civ_profile"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/user1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/tv_followers"
+        style="@style/Text.Normal"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="56995\nFollowers"
+        android:textColor="@color/blue"
+        app:layout_constraintEnd_toEndOf="@+id/tv_name"
+        app:layout_constraintStart_toStartOf="@+id/tv_name"
+        app:layout_constraintTop_toBottomOf="@+id/tv_username" />
+
+    <TextView
+        android:id="@+id/tv_repository"
+        style="@style/Text.Normal"
+        android:layout_marginEnd="16dp"
+        android:gravity="center"
+        android:text="102\nRepository"
+        android:textColor="@color/blue"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_followers"
+        app:layout_constraintEnd_toStartOf="@+id/tv_followers"
+        app:layout_constraintTop_toTopOf="@+id/tv_followers" />
+
+    <TextView
+        android:id="@+id/tv_following"
+        style="@style/Text.Normal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:gravity="center"
+        android:text="12\nFollowing"
+        android:textColor="@color/blue"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_followers"
+        app:layout_constraintStart_toEndOf="@+id/tv_followers"
+        app:layout_constraintTop_toTopOf="@+id/tv_followers" />
+
+    <TextView
+        android:id="@+id/tv_name"
+        style="@style/Text.Bold"
+        android:layout_marginTop="8dp"
+        android:text="Jake Wharton"
+        android:textColor="@color/dark_black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/civ_profile"
+        app:layout_constraintStart_toStartOf="@+id/civ_profile"
+        app:layout_constraintTop_toBottomOf="@+id/civ_profile" />
+
+    <TextView
+        android:id="@+id/tv_username"
+        style="@style/Text.Normal"
+        android:layout_marginTop="-4dp"
+        android:text="JakeWharton"
+        android:textColor="@color/dark_grey"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_name"
+        app:layout_constraintStart_toStartOf="@+id/tv_name"
+        app:layout_constraintTop_toBottomOf="@+id/tv_name" />
+
+    <TextView
+        android:id="@+id/tv_location"
+        style="@style/Text.Normal"
+        android:layout_marginTop="-4dp"
+        android:text="Pittsburgh, PA, USA"
+        android:textColor="@color/dark_grey"
+        app:layout_constraintEnd_toEndOf="@+id/tv_company"
+        app:layout_constraintStart_toStartOf="@+id/tv_company"
+        app:layout_constraintTop_toBottomOf="@+id/tv_company" />
+
+    <TextView
+        android:id="@+id/tv_company"
+        style="@style/Text.Normal"
+        android:layout_marginTop="16dp"
+        android:text="Google, Inc."
+        android:textColor="@color/dark_grey"
+        app:layout_constraintEnd_toEndOf="@+id/tv_username"
+        app:layout_constraintStart_toStartOf="@+id/tv_username"
+        app:layout_constraintTop_toBottomOf="@+id/tv_repository" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
