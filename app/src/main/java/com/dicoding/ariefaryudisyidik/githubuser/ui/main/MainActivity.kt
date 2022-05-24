@@ -9,8 +9,8 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.ariefaryudisyidik.githubuser.R
 import com.dicoding.ariefaryudisyidik.githubuser.databinding.ActivityMainBinding
-import com.dicoding.ariefaryudisyidik.githubuser.ui.detail.DetailActivity
 import com.dicoding.ariefaryudisyidik.githubuser.model.User
+import com.dicoding.ariefaryudisyidik.githubuser.ui.detail.DetailActivity
 
 class MainActivity : AppCompatActivity() {
 

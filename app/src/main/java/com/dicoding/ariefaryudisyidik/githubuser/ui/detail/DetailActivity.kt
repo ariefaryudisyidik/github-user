@@ -1,6 +1,5 @@
 package com.dicoding.ariefaryudisyidik.githubuser.ui.detail
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.dicoding.ariefaryudisyidik.githubuser.databinding.ActivityDetailBinding
@@ -22,7 +21,6 @@ class DetailActivity : AppCompatActivity() {
         showUserDetails()
     }
 
-    @SuppressLint("SetTextI18n")
     private fun showUserDetails() {
         binding.apply {
             val user = intent.getParcelableExtra<User>(EXTRA_USER)
@@ -30,9 +28,9 @@ class DetailActivity : AppCompatActivity() {
                 civProfile.setImageResource(user.avatar)
                 tvName.text = user.name
                 tvUsername.text = user.username
-                tvRepository.text = "${user.repository}\nRepository"
-                tvFollowers.text = "${user.followers}\nFollowers"
-                tvFollowing.text = "${user.following}\nFollowing"
+                tvRepository.text = StringBuilder("${user.repository}\nRepository")
+                tvFollowers.text = StringBuilder("${user.followers}\nFollowers")
+                tvFollowing.text = StringBuilder("${user.following}\nFollowing")
                 tvCompany.text = user.company
                 tvLocation.text = user.location
             }

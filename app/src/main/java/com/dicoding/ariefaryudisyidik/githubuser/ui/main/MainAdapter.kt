@@ -1,6 +1,5 @@
 package com.dicoding.ariefaryudisyidik.githubuser.ui.main
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -26,13 +25,12 @@ class MainAdapter(private val listUsers: ArrayList<User>) :
 
     inner class ViewHolder(private val binding: ItemUserBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        @SuppressLint("SetTextI18n")
         fun bind(user: User) {
             with(binding) {
                 civProfile.setImageResource(user.avatar)
                 tvName.text = user.name
                 tvUsername.text = user.username
-                tvRepository.text = "${user.repository} Repository"
+                tvRepository.text = StringBuilder("${user.repository} Repository")
                 cvItemUser.setOnClickListener {
                 }
             }
