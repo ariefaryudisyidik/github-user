@@ -1,11 +1,10 @@
 package com.dicoding.ariefaryudisyidik.githubuser.ui.detail
 
 import android.annotation.SuppressLint
-import android.graphics.Typeface
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.dicoding.ariefaryudisyidik.githubuser.databinding.ActivityDetailBinding
-import com.dicoding.ariefaryudisyidik.githubuser.ui.model.User
+import com.dicoding.ariefaryudisyidik.githubuser.model.User
 
 class DetailActivity : AppCompatActivity() {
 

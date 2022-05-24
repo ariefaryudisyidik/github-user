@@ -78,7 +78,7 @@
         android:id="@+id/tv_company"
         style="@style/Text.Normal"
         android:layout_marginTop="16dp"
-        android:drawableStart="@drawable/ic_business"
+        android:drawableStart="@drawable/ic_company"
         android:drawablePadding="4dp"
         android:drawableTint="@color/dark_grey"
         android:text="@string/dummy_company"

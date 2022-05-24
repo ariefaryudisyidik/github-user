@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.dicoding.ariefaryudisyidik.githubuser.databinding.ItemUserBinding
-import com.dicoding.ariefaryudisyidik.githubuser.ui.model.User
+import com.dicoding.ariefaryudisyidik.githubuser.model.User
 
 class MainAdapter(private val listUsers: ArrayList<User>) :
     RecyclerView.Adapter<MainAdapter.ViewHolder>() {

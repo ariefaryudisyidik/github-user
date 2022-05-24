@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.ariefaryudisyidik.githubuser.R
 import com.dicoding.ariefaryudisyidik.githubuser.databinding.ActivityMainBinding
 import com.dicoding.ariefaryudisyidik.githubuser.ui.detail.DetailActivity
-import com.dicoding.ariefaryudisyidik.githubuser.ui.model.User
+import com.dicoding.ariefaryudisyidik.githubuser.model.User
 
 class MainActivity : AppCompatActivity() {
 
