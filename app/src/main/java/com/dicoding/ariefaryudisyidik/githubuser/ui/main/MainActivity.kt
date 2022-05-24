@@ -63,9 +63,17 @@ class MainActivity : AppCompatActivity() {
 
     private fun showListUser() {
         binding.apply {
+            val listMainAdapter = MainAdapter(list)
             rvUser.layoutManager = LinearLayoutManager(this@MainActivity)
             rvUser.setHasFixedSize(true)
-            rvUser.adapter = MainAdapter(list)
+            rvUser.adapter = listMainAdapter
+            listMainAdapter.setOnItemClickCallback(object : MainAdapter.OnItemClickCallback {
+                override fun onItemClicked(data: User) {
+                    val intentToDetail = Intent(this@MainActivity, DetailActivity::class.java)
+                    intentToDetail.putExtra(DetailActivity.EXTRA_USER, data)
+                    startActivity(intentToDetail)
+                }
+            })
         }
     }
 }

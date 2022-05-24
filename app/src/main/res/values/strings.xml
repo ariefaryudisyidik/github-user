@@ -10,7 +10,7 @@
     <string name="dummy_repository">102\nRepository</string>
     <string name="dummy_following">12\nFollowing</string>
     <string name="dummy_followers">56995\nFollowers</string>
-    <string name="dummy_location">Pittsburgh, PA, <US></US>A</string>
+    <string name="dummy_location">Pittsburgh, PA, USA</string>
     <string name="dummy_company">Google, Inc.</string>
 
     <string-array name="username">

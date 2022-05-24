@@ -4,13 +4,13 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.dicoding.ariefaryudisyidik.githubuser.R
 import com.dicoding.ariefaryudisyidik.githubuser.databinding.ItemUserBinding
 import com.dicoding.ariefaryudisyidik.githubuser.ui.model.User
-import kotlin.coroutines.coroutineContext
 
 class MainAdapter(private val listUsers: ArrayList<User>) :
     RecyclerView.Adapter<MainAdapter.ViewHolder>() {
+
+    private lateinit var onItemClickCallback: OnItemClickCallback
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemUserBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -19,6 +19,7 @@ class MainAdapter(private val listUsers: ArrayList<User>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(listUsers[position])
+        holder.itemView.setOnClickListener { onItemClickCallback.onItemClicked(listUsers[position]) }
     }
 
     override fun getItemCount() = listUsers.size
@@ -36,5 +37,13 @@ class MainAdapter(private val listUsers: ArrayList<User>) :
                 }
             }
         }
+    }
+
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
+        this.onItemClickCallback = onItemClickCallback
+    }
+
+    interface OnItemClickCallback {
+        fun onItemClicked(data: User)
     }
 }

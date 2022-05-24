@@ -1,12 +1,42 @@
 package com.dicoding.ariefaryudisyidik.githubuser.ui.detail
 
+import android.annotation.SuppressLint
+import android.graphics.Typeface
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.dicoding.ariefaryudisyidik.githubuser.R
+import com.dicoding.ariefaryudisyidik.githubuser.databinding.ActivityDetailBinding
+import com.dicoding.ariefaryudisyidik.githubuser.ui.model.User
 
 class DetailActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityDetailBinding
+
+    companion object {
+        const val EXTRA_USER = "extra_user"
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_detail)
+        binding = ActivityDetailBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        showUserDetails()
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun showUserDetails() {
+        binding.apply {
+            val user = intent.getParcelableExtra<User>(EXTRA_USER)
+            if (user != null) {
+                civProfile.setImageResource(user.avatar)
+                tvName.text = user.name
+                tvUsername.text = user.username
+                tvRepository.text = "${user.repository}\nRepository"
+                tvFollowers.text = "${user.followers}\nFollowers"
+                tvFollowing.text = "${user.following}\nFollowing"
+                tvCompany.text = user.company
+                tvLocation.text = user.location
+            }
+        }
     }
 }
