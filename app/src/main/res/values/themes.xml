@@ -37,4 +37,10 @@
     <style name="Text.Bold">
         <item name="fontFamily">@font/poppins_semibold</item>
     </style>
+
+    <!-- SearchView -->
+    <style name="SearchView" parent="Widget.AppCompat.SearchView">
+        <item name="android:fontFamily">@font/poppins</item>
+        <item name="android:textSize">16sp</item>
+    </style>
 </resources>

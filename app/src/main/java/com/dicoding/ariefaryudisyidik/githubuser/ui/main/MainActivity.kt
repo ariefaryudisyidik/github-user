@@ -3,8 +3,11 @@ package com.dicoding.ariefaryudisyidik.githubuser.ui.main
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.widget.SearchView
+import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.ariefaryudisyidik.githubuser.R
@@ -29,6 +32,23 @@ class MainActivity : AppCompatActivity() {
 
         list.addAll(listUsers)
         showListUser()
+        searchAction()
+    }
+
+    private fun searchAction() {
+        binding.apply {
+            searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String): Boolean {
+                    searchView.clearFocus()
+                    return true
+                }
+
+                override fun onQueryTextChange(newText: String): Boolean {
+                    return false
+                }
+
+            })
+        }
     }
 
     private val listUsers: ArrayList<User>
@@ -69,6 +89,7 @@ class MainActivity : AppCompatActivity() {
             rvUser.adapter = listMainAdapter
             listMainAdapter.setOnItemClickCallback(object : MainAdapter.OnItemClickCallback {
                 override fun onItemClicked(data: User) {
+                    searchView.clearFocus()
                     val intentToDetail = Intent(this@MainActivity, DetailActivity::class.java)
                     intentToDetail.putExtra(DetailActivity.EXTRA_USER, data)
                     startActivity(intentToDetail)
