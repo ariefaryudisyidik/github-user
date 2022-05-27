@@ -4,40 +4,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
     tools:context=".ui.detail.DetailActivity">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/civ_profile"
+        android:id="@+id/iv_profile"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginTop="16dp"
-        android:src="@drawable/user1"
+        android:layout_marginTop="32dp"
+        android:src="@drawable/ic_github"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_name"
+        android:id="@+id/tv_username"
         style="@style/Text.Bold"
         android:layout_marginTop="8dp"
         android:text="@string/dummy_name"
         android:textColor="@color/dark_black"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/civ_profile"
-        app:layout_constraintStart_toStartOf="@+id/civ_profile"
-        app:layout_constraintTop_toBottomOf="@+id/civ_profile" />
+        app:layout_constraintEnd_toEndOf="@+id/iv_profile"
+        app:layout_constraintStart_toStartOf="@+id/iv_profile"
+        app:layout_constraintTop_toBottomOf="@+id/iv_profile" />
 
     <TextView
-        android:id="@+id/tv_username"
+        android:id="@+id/tv_user_url"
         style="@style/Text.Normal"
         android:layout_marginTop="-4dp"
         android:text="@string/dummy_username"
         android:textColor="@color/dark_grey"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/tv_name"
-        app:layout_constraintStart_toStartOf="@+id/tv_name"
-        app:layout_constraintTop_toBottomOf="@+id/tv_name" />
+        app:layout_constraintEnd_toEndOf="@+id/tv_username"
+        app:layout_constraintStart_toStartOf="@+id/tv_username"
+        app:layout_constraintTop_toBottomOf="@+id/tv_username" />
 
     <TextView
         android:id="@+id/tv_repository"
@@ -57,9 +56,9 @@
         android:gravity="center"
         android:text="@string/dummy_followers"
         android:textColor="@color/blue"
-        app:layout_constraintEnd_toEndOf="@+id/tv_name"
-        app:layout_constraintStart_toStartOf="@+id/tv_name"
-        app:layout_constraintTop_toBottomOf="@+id/tv_username" />
+        app:layout_constraintEnd_toEndOf="@+id/tv_username"
+        app:layout_constraintStart_toStartOf="@+id/tv_username"
+        app:layout_constraintTop_toBottomOf="@+id/tv_user_url" />
 
     <TextView
         android:id="@+id/tv_following"
@@ -74,28 +73,21 @@
         app:layout_constraintStart_toEndOf="@+id/tv_followers"
         app:layout_constraintTop_toTopOf="@+id/tv_followers" />
 
-    <TextView
-        android:id="@+id/tv_company"
-        style="@style/Text.Normal"
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:drawableStart="@drawable/ic_company"
-        android:drawablePadding="4dp"
-        android:drawableTint="@color/dark_grey"
-        android:text="@string/dummy_company"
-        android:textColor="@color/dark_grey"
-        app:layout_constraintEnd_toEndOf="@+id/tv_username"
-        app:layout_constraintStart_toStartOf="@+id/tv_username"
-        app:layout_constraintTop_toBottomOf="@+id/tv_repository" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_followers" />
 
-    <TextView
-        android:id="@+id/tv_location"
-        style="@style/Text.Normal"
-        android:drawableStart="@drawable/ic_location"
-        android:drawableTint="@color/dark_grey"
-        android:text="@string/dummy_location"
-        android:textColor="@color/dark_grey"
-        app:layout_constraintEnd_toEndOf="@+id/tv_company"
-        app:layout_constraintStart_toStartOf="@+id/tv_company"
-        app:layout_constraintTop_toBottomOf="@+id/tv_company" />
+    <androidx.viewpager2.widget.ViewPager2
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tabLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

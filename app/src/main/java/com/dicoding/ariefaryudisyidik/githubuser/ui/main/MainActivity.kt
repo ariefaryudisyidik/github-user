@@ -1,26 +1,19 @@
 package com.dicoding.ariefaryudisyidik.githubuser.ui.main
 
-import android.annotation.SuppressLint
-import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.SearchView
-import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.res.ResourcesCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.dicoding.ariefaryudisyidik.githubuser.R
+import com.dicoding.ariefaryudisyidik.githubuser.data.remote.User
 import com.dicoding.ariefaryudisyidik.githubuser.databinding.ActivityMainBinding
-import com.dicoding.ariefaryudisyidik.githubuser.model.User
-import com.dicoding.ariefaryudisyidik.githubuser.ui.detail.DetailActivity
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private val viewModel: MainViewModel by viewModels()
-
-    private val list = ArrayList<User>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen().apply {
@@ -30,15 +23,20 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        list.addAll(listUsers)
-        showListUser()
+        viewModel.progressBar.observe(this) { showLoading(it) }
+        viewModel.user.observe(this) { showListUser(it) }
         searchAction()
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
     private fun searchAction() {
         binding.apply {
             searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String): Boolean {
+                    viewModel.searchUsers(query)
                     searchView.clearFocus()
                     return true
                 }
@@ -46,55 +44,24 @@ class MainActivity : AppCompatActivity() {
                 override fun onQueryTextChange(newText: String): Boolean {
                     return false
                 }
-
             })
         }
     }
 
-    private val listUsers: ArrayList<User>
-        @SuppressLint("Recycle")
-        get() {
-            resources.apply {
-                val username = getStringArray(R.array.username)
-                val name = getStringArray(R.array.name)
-                val avatar = obtainTypedArray(R.array.avatar)
-                val company = getStringArray(R.array.company)
-                val location = getStringArray(R.array.location)
-                val repository = getStringArray(R.array.repository)
-                val followers = getStringArray(R.array.followers)
-                val following = getStringArray(R.array.following)
-                val listUser = ArrayList<User>()
-                for (i in username.indices) {
-                    val user = User(
-                        username[i],
-                        name[i],
-                        avatar.getResourceId(i, -1),
-                        company[i],
-                        location[i],
-                        repository[i].toInt(),
-                        followers[i].toInt(),
-                        following[i].toInt()
-                    )
-                    listUser.add(user)
-                }
-                return listUser
-            }
-        }
-
-    private fun showListUser() {
+    private fun showListUser(list: List<User>) {
         binding.apply {
             val listMainAdapter = MainAdapter(list)
             rvUser.layoutManager = LinearLayoutManager(this@MainActivity)
             rvUser.setHasFixedSize(true)
             rvUser.adapter = listMainAdapter
-            listMainAdapter.setOnItemClickCallback(object : MainAdapter.OnItemClickCallback {
-                override fun onItemClicked(data: User) {
-                    searchView.clearFocus()
-                    val intentToDetail = Intent(this@MainActivity, DetailActivity::class.java)
-                    intentToDetail.putExtra(DetailActivity.EXTRA_USER, data)
-                    startActivity(intentToDetail)
-                }
-            })
+//            listMainAdapter.setOnItemClickCallback(object : MainAdapter.OnItemClickCallback {
+//                override fun onItemClicked(data: Items) {
+//                    searchView.clearFocus()
+//                    val intentToDetail = Intent(this@MainActivity, DetailActivity::class.java)
+//                    intentToDetail.putExtra(DetailActivity.EXTRA_USER, data)
+//                    startActivity(intentToDetail)
+//                }
+//            })
         }
     }
 }

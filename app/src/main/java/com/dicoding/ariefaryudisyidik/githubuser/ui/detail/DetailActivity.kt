@@ -25,14 +25,14 @@ class DetailActivity : AppCompatActivity() {
         binding.apply {
             val user = intent.getParcelableExtra<User>(EXTRA_USER)
             if (user != null) {
-                civProfile.setImageResource(user.avatar)
-                tvName.text = user.name
+//                civProfile.setImageResource(user.avatar)
+//                tvName.text = user.name
                 tvUsername.text = user.username
                 tvRepository.text = StringBuilder("${user.repository}\nRepository")
                 tvFollowers.text = StringBuilder("${user.followers}\nFollowers")
                 tvFollowing.text = StringBuilder("${user.following}\nFollowing")
-                tvCompany.text = user.company
-                tvLocation.text = user.location
+//                tvCompany.text = user.company
+//                tvLocation.text = user.location
             }
         }
     }
