@@ -1,12 +1,10 @@
 package com.dicoding.ariefaryudisyidik.githubuser.ui.following
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.dicoding.ariefaryudisyidik.githubuser.R
-import com.dicoding.ariefaryudisyidik.githubuser.databinding.FragmentFollowersBinding
+import androidx.fragment.app.Fragment
 import com.dicoding.ariefaryudisyidik.githubuser.databinding.FragmentFollowingBinding
 
 class FollowingFragment : Fragment() {

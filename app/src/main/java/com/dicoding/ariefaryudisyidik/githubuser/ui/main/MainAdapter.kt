@@ -5,14 +5,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
-import com.bumptech.glide.request.RequestOptions
-import com.bumptech.glide.request.transition.DrawableCrossFadeFactory
-import com.bumptech.glide.request.transition.DrawableCrossFadeTransition
-import com.dicoding.ariefaryudisyidik.githubuser.R
-import com.dicoding.ariefaryudisyidik.githubuser.data.remote.User
+import com.dicoding.ariefaryudisyidik.githubuser.data.remote.Items
 import com.dicoding.ariefaryudisyidik.githubuser.databinding.ItemUserBinding
 
-class MainAdapter(private val listUsers: List<User>) :
+class MainAdapter(private val listItems: List<Items>) :
     RecyclerView.Adapter<MainAdapter.ViewHolder>() {
 
     private lateinit var onItemClickCallback: OnItemClickCallback
@@ -23,23 +19,23 @@ class MainAdapter(private val listUsers: List<User>) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(listUsers[position])
-//        holder.itemView.setOnClickListener { onItemClickCallback.onItemClicked(listUsers[position]) }
+        holder.bind(listItems[position])
     }
 
-    override fun getItemCount() = listUsers.size
+    override fun getItemCount() = listItems.size
 
     inner class ViewHolder(private val binding: ItemUserBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(user: User) {
+        fun bind(items: Items) {
             with(binding) {
                 Glide.with(itemView)
-                    .load(user.avatarUrl)
+                    .load(items.avatarUrl)
                     .circleCrop()
                     .transition(DrawableTransitionOptions.withCrossFade())
                     .into(ivProfile)
-                tvUsername.text = user.username
-                tvUserUrl.text = user.userUrl
+                tvUsername.text = items.login
+                tvUserUrl.text = items.userUrl
+                root.setOnClickListener { onItemClickCallback.onItemClicked(items) }
             }
         }
     }
@@ -49,6 +45,6 @@ class MainAdapter(private val listUsers: List<User>) :
     }
 
     interface OnItemClickCallback {
-        fun onItemClicked(data: User)
+        fun onItemClicked(data: Items)
     }
 }

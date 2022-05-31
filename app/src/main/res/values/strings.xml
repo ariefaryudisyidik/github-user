@@ -5,6 +5,8 @@
     <string name="user_url">User URL</string>
     <string name="location">Location</string>
     <string name="repository">Repository</string>
+    <string name="tab_text_1">Followers</string>
+    <string name="tab_text_2">Following</string>
 
     <string name="dummy_name">Jake Wharton</string>
     <string name="dummy_username">JakeWharton</string>

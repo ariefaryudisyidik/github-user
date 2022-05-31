@@ -1,15 +1,12 @@
 package com.dicoding.ariefaryudisyidik.githubuser.ui.main
 
-import android.app.AlertDialog
-import android.app.Application
-import android.content.Context
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dicoding.ariefaryudisyidik.githubuser.data.remote.ApiConfig
-import com.dicoding.ariefaryudisyidik.githubuser.data.remote.User
+import com.dicoding.ariefaryudisyidik.githubuser.data.remote.Items
 import com.dicoding.ariefaryudisyidik.githubuser.data.remote.UserResponse
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -24,8 +21,8 @@ class MainViewModel : ViewModel() {
     private val _isLoading = MutableStateFlow(true)
     val isLoading = _isLoading.asStateFlow()
 
-    private val _user = MutableLiveData<List<User>>()
-    val user: LiveData<List<User>> = _user
+    private val _items = MutableLiveData<List<Items>>()
+    val items: LiveData<List<Items>> = _items
 
     private val _progressBar = MutableLiveData<Boolean>()
     val progressBar: LiveData<Boolean> = _progressBar
@@ -48,7 +45,7 @@ class MainViewModel : ViewModel() {
             override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
                 if (response.isSuccessful) {
                     _progressBar.value = false
-                    _user.postValue(response.body()?.user)
+                    _items.postValue(response.body()?.items)
                 }
             }
 

@@ -1,5 +1,6 @@
 package com.dicoding.ariefaryudisyidik.githubuser.ui.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.SearchView
@@ -7,8 +8,9 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.dicoding.ariefaryudisyidik.githubuser.data.remote.User
+import com.dicoding.ariefaryudisyidik.githubuser.data.remote.Items
 import com.dicoding.ariefaryudisyidik.githubuser.databinding.ActivityMainBinding
+import com.dicoding.ariefaryudisyidik.githubuser.ui.detail.DetailActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         viewModel.progressBar.observe(this) { showLoading(it) }
-        viewModel.user.observe(this) { showListUser(it) }
+        viewModel.items.observe(this) { showListUser(it) }
         searchAction()
     }
 
@@ -48,20 +50,20 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun showListUser(list: List<User>) {
+    private fun showListUser(list: List<Items>) {
         binding.apply {
             val listMainAdapter = MainAdapter(list)
             rvUser.layoutManager = LinearLayoutManager(this@MainActivity)
             rvUser.setHasFixedSize(true)
             rvUser.adapter = listMainAdapter
-//            listMainAdapter.setOnItemClickCallback(object : MainAdapter.OnItemClickCallback {
-//                override fun onItemClicked(data: Items) {
-//                    searchView.clearFocus()
-//                    val intentToDetail = Intent(this@MainActivity, DetailActivity::class.java)
-//                    intentToDetail.putExtra(DetailActivity.EXTRA_USER, data)
-//                    startActivity(intentToDetail)
-//                }
-//            })
+            listMainAdapter.setOnItemClickCallback(object : MainAdapter.OnItemClickCallback {
+                override fun onItemClicked(data: Items) {
+                    searchView.clearFocus()
+                    val detailIntent = Intent(this@MainActivity, DetailActivity::class.java)
+                    detailIntent.putExtra(DetailActivity.EXTRA_USERNAME, data.login)
+                    startActivity(detailIntent)
+                }
+            })
         }
     }
 }
