@@ -15,6 +15,7 @@ class DetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailBinding
     private val viewModel: DetailViewModel by viewModels()
+    private val mBundle = Bundle()
 
     companion object {
         const val EXTRA_USERNAME = "extra_username"
@@ -43,6 +44,8 @@ class DetailActivity : AppCompatActivity() {
     private fun showUserDetails() {
         binding.apply {
             val username = intent.getStringExtra(EXTRA_USERNAME)
+            mBundle.putString(EXTRA_USERNAME, username)
+
             if (username != null) {
                 viewModel.setUserDetails(username)
             }
@@ -62,7 +65,7 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun tabSetup() {
-        val sectionPagerAdapter = SectionPagerAdapter(this)
+        val sectionPagerAdapter = SectionPagerAdapter(this, mBundle)
         binding.apply {
             viewPager.adapter = sectionPagerAdapter
             TabLayoutMediator(tabLayout, viewPager) { tab, position ->

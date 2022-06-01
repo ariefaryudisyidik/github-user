@@ -1,5 +1,6 @@
 package com.dicoding.ariefaryudisyidik.githubuser.data.remote.retrofit
 
+import com.dicoding.ariefaryudisyidik.githubuser.data.remote.response.Items
 import com.dicoding.ariefaryudisyidik.githubuser.data.remote.response.UserDetailsResponse
 import com.dicoding.ariefaryudisyidik.githubuser.data.remote.response.UserResponse
 import retrofit2.Call
@@ -26,11 +27,11 @@ interface ApiService {
     @Headers("Authorization: token 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")
     fun getFollowers(
         @Path("username") username: String
-    ): Call<List<UserResponse>>
+    ): Call<List<Items>>
 
     @GET("users/{username}/following")
     @Headers("Authorization: token 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")
     fun getFollowings(
         @Path("username") username: String
-    ): Call<List<UserResponse>>
+    ): Call<List<Items>>
 }
