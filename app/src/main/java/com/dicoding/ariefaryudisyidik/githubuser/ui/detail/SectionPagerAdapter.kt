@@ -1,10 +1,8 @@
 package com.dicoding.ariefaryudisyidik.githubuser.ui.detail
 
-import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.dicoding.ariefaryudisyidik.githubuser.R
 import com.dicoding.ariefaryudisyidik.githubuser.ui.followers.FollowersFragment
 import com.dicoding.ariefaryudisyidik.githubuser.ui.following.FollowingFragment
 

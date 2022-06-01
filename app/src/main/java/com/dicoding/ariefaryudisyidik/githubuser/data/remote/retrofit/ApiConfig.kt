@@ -1,4 +1,4 @@
-package com.dicoding.ariefaryudisyidik.githubuser.data.remote
+package com.dicoding.ariefaryudisyidik.githubuser.data.remote.retrofit
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

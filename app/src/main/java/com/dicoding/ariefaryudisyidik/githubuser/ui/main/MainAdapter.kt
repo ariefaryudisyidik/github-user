@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
-import com.dicoding.ariefaryudisyidik.githubuser.data.remote.Items
+import com.dicoding.ariefaryudisyidik.githubuser.data.remote.response.Items
 import com.dicoding.ariefaryudisyidik.githubuser.databinding.ItemUserBinding
 
 class MainAdapter(private val listItems: List<Items>) :

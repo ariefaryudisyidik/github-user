@@ -8,7 +8,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.dicoding.ariefaryudisyidik.githubuser.data.remote.Items
+import com.dicoding.ariefaryudisyidik.githubuser.data.remote.response.Items
 import com.dicoding.ariefaryudisyidik.githubuser.databinding.ActivityMainBinding
 import com.dicoding.ariefaryudisyidik.githubuser.ui.detail.DetailActivity
 

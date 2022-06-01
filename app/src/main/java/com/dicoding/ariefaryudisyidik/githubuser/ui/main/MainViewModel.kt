@@ -1,13 +1,14 @@
 package com.dicoding.ariefaryudisyidik.githubuser.ui.main
 
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.dicoding.ariefaryudisyidik.githubuser.data.remote.ApiConfig
-import com.dicoding.ariefaryudisyidik.githubuser.data.remote.Items
-import com.dicoding.ariefaryudisyidik.githubuser.data.remote.UserResponse
+import com.dicoding.ariefaryudisyidik.githubuser.data.remote.retrofit.ApiConfig
+import com.dicoding.ariefaryudisyidik.githubuser.data.remote.response.Items
+import com.dicoding.ariefaryudisyidik.githubuser.data.remote.response.UserResponse
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -38,9 +39,9 @@ class MainViewModel : ViewModel() {
         }
     }
 
-    fun searchUsers(query: String) {
+    fun searchUsers(username: String) {
         _progressBar.value = true
-        val client = ApiConfig.getApiService().getUser(query)
+        val client = ApiConfig.getApiService().getUser(username)
         client.enqueue(object : Callback<UserResponse> {
             override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
                 if (response.isSuccessful) {

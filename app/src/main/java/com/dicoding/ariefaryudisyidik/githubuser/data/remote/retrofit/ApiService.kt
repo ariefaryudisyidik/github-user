@@ -1,5 +1,7 @@
-package com.dicoding.ariefaryudisyidik.githubuser.data.remote
+package com.dicoding.ariefaryudisyidik.githubuser.data.remote.retrofit
 
+import com.dicoding.ariefaryudisyidik.githubuser.data.remote.response.UserDetailsResponse
+import com.dicoding.ariefaryudisyidik.githubuser.data.remote.response.UserResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Headers
@@ -11,7 +13,7 @@ interface ApiService {
     @GET("search/users")
     @Headers("Authorization: token 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")
     fun getUser(
-        @Query("q") query: String
+        @Query("q") username: String
     ): Call<UserResponse>
 
     @GET("users/{username}")
