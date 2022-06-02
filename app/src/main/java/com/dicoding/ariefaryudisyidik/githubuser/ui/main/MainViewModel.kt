@@ -5,9 +5,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.dicoding.ariefaryudisyidik.githubuser.data.remote.retrofit.ApiConfig
 import com.dicoding.ariefaryudisyidik.githubuser.data.remote.response.Items
 import com.dicoding.ariefaryudisyidik.githubuser.data.remote.response.UserResponse
+import com.dicoding.ariefaryudisyidik.githubuser.data.remote.retrofit.ApiConfig
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
