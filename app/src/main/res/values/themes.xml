@@ -52,4 +52,12 @@
         <item name="android:elevation">2dp</item>
         <item name="android:padding">8dp</item>
     </style>
+
+    <!-- TabLayout -->
+    <style name="TabLayout" parent="Widget.MaterialComponents.TabLayout">
+        <item name="tabRippleColor">@android:color/transparent</item>
+        <item name="tabIndicatorGravity">stretch</item>
+        <item name="tabIndicator">@drawable/bg_round</item>
+        <item name="tabSelectedTextColor">@color/white</item>
+    </style>
 </resources>
