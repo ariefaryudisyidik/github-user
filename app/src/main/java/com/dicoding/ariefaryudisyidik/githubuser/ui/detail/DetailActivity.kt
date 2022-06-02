@@ -32,7 +32,6 @@ class DetailActivity : AppCompatActivity() {
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        viewModel.progressBar.observe(this) { showLoading(it) }
         showUserDetails()
         tabSetup()
     }
@@ -42,6 +41,7 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun showUserDetails() {
+        viewModel.progressBar.observe(this) { showLoading(it) }
         binding.apply {
             val username = intent.getStringExtra(EXTRA_USERNAME)
             mBundle.putString(EXTRA_USERNAME, username)
@@ -49,6 +49,7 @@ class DetailActivity : AppCompatActivity() {
             if (username != null) {
                 viewModel.setUserDetails(username)
             }
+
             viewModel.userDetails.observe(this@DetailActivity) { user ->
                 Glide.with(this@DetailActivity)
                     .load(user.avatarUrl)

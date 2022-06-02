@@ -1,7 +1,6 @@
 package com.dicoding.ariefaryudisyidik.githubuser.ui.main
 
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -22,8 +21,8 @@ class MainViewModel : ViewModel() {
     private val _isLoading = MutableStateFlow(true)
     val isLoading = _isLoading.asStateFlow()
 
-    private val _items = MutableLiveData<List<Items>>()
-    val items: LiveData<List<Items>> = _items
+    private val _users = MutableLiveData<List<Items>>()
+    val users: LiveData<List<Items>> = _users
 
     private val _progressBar = MutableLiveData<Boolean>()
     val progressBar: LiveData<Boolean> = _progressBar
@@ -46,7 +45,7 @@ class MainViewModel : ViewModel() {
             override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
                 if (response.isSuccessful) {
                     _progressBar.value = false
-                    _items.postValue(response.body()?.items)
+                    _users.postValue(response.body()?.items)
                 }
             }
 

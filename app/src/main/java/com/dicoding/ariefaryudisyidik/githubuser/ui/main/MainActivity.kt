@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         viewModel.progressBar.observe(this) { showLoading(it) }
-        viewModel.items.observe(this) { showListUser(it) }
+        viewModel.users.observe(this) { showUser(it) }
         searchAction()
     }
 
@@ -50,13 +50,13 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun showListUser(list: List<Items>) {
+    private fun showUser(list: List<Items>) {
         binding.apply {
-            val listMainAdapter = MainAdapter(list)
+            val mainAdapter = MainAdapter(list)
             rvUser.layoutManager = LinearLayoutManager(this@MainActivity)
             rvUser.setHasFixedSize(true)
-            rvUser.adapter = listMainAdapter
-            listMainAdapter.setOnItemClickCallback(object : MainAdapter.OnItemClickCallback {
+            rvUser.adapter = mainAdapter
+            mainAdapter.setOnItemClickCallback(object : MainAdapter.OnItemClickCallback {
                 override fun onItemClicked(data: Items) {
                     searchView.clearFocus()
                     val detailIntent = Intent(this@MainActivity, DetailActivity::class.java)
