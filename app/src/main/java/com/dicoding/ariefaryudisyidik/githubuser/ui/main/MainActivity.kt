@@ -52,6 +52,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun showUser(list: List<Items>) {
         binding.apply {
+            lottieAnimationView.visibility = View.GONE
             if (list.isEmpty()) {
                 rvUser.visibility = View.GONE
                 layoutEmpty.root.visibility = View.VISIBLE
