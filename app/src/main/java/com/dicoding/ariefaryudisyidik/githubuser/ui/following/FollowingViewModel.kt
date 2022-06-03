@@ -15,6 +15,9 @@ class FollowingViewModel : ViewModel() {
     private val _listFollowing = MutableLiveData<List<Items>>()
     val listFollowing: LiveData<List<Items>> = _listFollowing
 
+    private val _progressBar = MutableLiveData<Boolean>()
+    val progressBar: LiveData<Boolean> = _progressBar
+
     companion object {
         private const val TAG = "FollowingViewModel"
     }
@@ -23,12 +26,14 @@ class FollowingViewModel : ViewModel() {
         val client = ApiConfig.getApiService().getFollowing(username)
         client.enqueue(object : Callback<List<Items>> {
             override fun onResponse(call: Call<List<Items>>, response: Response<List<Items>>) {
+                _progressBar.value = false
                 if (response.isSuccessful) {
                     _listFollowing.postValue(response.body())
                 }
             }
 
             override fun onFailure(call: Call<List<Items>>, t: Throwable) {
+                _progressBar.value = false
                 Log.e(TAG, "onFailure: ${t.message}")
             }
         })

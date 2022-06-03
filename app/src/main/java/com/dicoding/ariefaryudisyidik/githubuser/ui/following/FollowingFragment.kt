@@ -23,7 +23,12 @@ class FollowingFragment : Fragment(R.layout.fragment_following) {
 
         val username = arguments?.getString(DetailActivity.EXTRA_USERNAME).toString()
         viewModel.setListFollowing(username)
+        viewModel.progressBar.observe(viewLifecycleOwner) { showLoading(it) }
         viewModel.listFollowing.observe(viewLifecycleOwner) { showFollowing(it) }
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
     private fun showFollowing(list: List<Items>) {
