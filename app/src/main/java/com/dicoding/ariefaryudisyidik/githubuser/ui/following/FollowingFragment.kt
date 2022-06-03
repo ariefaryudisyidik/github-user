@@ -33,14 +33,21 @@ class FollowingFragment : Fragment(R.layout.fragment_following) {
 
     private fun showFollowing(list: List<Items>) {
         binding.apply {
-            val mainAdapter = MainAdapter(list)
-            rvFollowing.layoutManager = LinearLayoutManager(requireContext())
-            rvFollowing.setHasFixedSize(true)
-            rvFollowing.adapter = mainAdapter
-            mainAdapter.setOnItemClickCallback(object : MainAdapter.OnItemClickCallback {
-                override fun onItemClicked(data: Items) {
-                }
-            })
+            if (list.isEmpty()) {
+                rvFollowing.visibility = View.GONE
+                layoutEmpty.root.visibility = View.VISIBLE
+            } else {
+                rvFollowing.visibility = View.VISIBLE
+                layoutEmpty.root.visibility = View.GONE
+                val mainAdapter = MainAdapter(list)
+                rvFollowing.layoutManager = LinearLayoutManager(requireContext())
+                rvFollowing.setHasFixedSize(true)
+                rvFollowing.adapter = mainAdapter
+                mainAdapter.setOnItemClickCallback(object : MainAdapter.OnItemClickCallback {
+                    override fun onItemClicked(data: Items) {
+                    }
+                })
+            }
         }
     }
 

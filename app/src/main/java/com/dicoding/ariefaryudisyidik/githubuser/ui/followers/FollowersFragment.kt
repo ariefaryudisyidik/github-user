@@ -28,14 +28,21 @@ class FollowersFragment : Fragment(R.layout.fragment_followers) {
 
     private fun showFollowers(list: List<Items>) {
         binding.apply {
-            val mainAdapter = MainAdapter(list)
-            rvFollowers.layoutManager = LinearLayoutManager(requireContext())
-            rvFollowers.setHasFixedSize(true)
-            rvFollowers.adapter = mainAdapter
-            mainAdapter.setOnItemClickCallback(object : MainAdapter.OnItemClickCallback {
-                override fun onItemClicked(data: Items) {
-                }
-            })
+            if (list.isEmpty()) {
+                rvFollowers.visibility = View.GONE
+                layoutEmpty.root.visibility = View.VISIBLE
+            } else {
+                rvFollowers.visibility = View.VISIBLE
+                layoutEmpty.root.visibility = View.GONE
+                val mainAdapter = MainAdapter(list)
+                rvFollowers.layoutManager = LinearLayoutManager(requireContext())
+                rvFollowers.setHasFixedSize(true)
+                rvFollowers.adapter = mainAdapter
+                mainAdapter.setOnItemClickCallback(object : MainAdapter.OnItemClickCallback {
+                    override fun onItemClicked(data: Items) {
+                    }
+                })
+            }
         }
     }
 
