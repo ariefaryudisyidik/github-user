@@ -18,10 +18,6 @@ class DetailViewModel : ViewModel() {
     private val _progressBar = MutableLiveData<Boolean>()
     val progressBar: LiveData<Boolean> = _progressBar
 
-    companion object {
-        private const val TAG = "DetailViewModel"
-    }
-
     fun setUserDetails(username: String) {
         val client = ApiConfig.getApiService().getUserDetails(username)
         client.enqueue(object : Callback<UserDetailsResponse> {
@@ -40,5 +36,9 @@ class DetailViewModel : ViewModel() {
                 Log.e(TAG, "onFailure: ${t.message}")
             }
         })
+    }
+
+    companion object {
+        private const val TAG = "DetailViewModel"
     }
 }

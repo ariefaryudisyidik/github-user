@@ -27,10 +27,6 @@ class MainViewModel : ViewModel() {
     private val _progressBar = MutableLiveData<Boolean>()
     val progressBar: LiveData<Boolean> = _progressBar
 
-    companion object {
-        private const val TAG = "MainViewModel"
-    }
-
     init {
         viewModelScope.launch {
             delay(1)
@@ -54,5 +50,9 @@ class MainViewModel : ViewModel() {
                 Log.e(TAG, "onFailure: ${t.message}")
             }
         })
+    }
+
+    companion object {
+        private const val TAG = "MainViewModel"
     }
 }

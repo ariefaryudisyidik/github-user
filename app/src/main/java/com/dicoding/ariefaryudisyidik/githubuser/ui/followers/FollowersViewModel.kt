@@ -15,10 +15,6 @@ class FollowersViewModel : ViewModel() {
     private val _listFollowers = MutableLiveData<List<Items>>()
     val listFollowers: LiveData<List<Items>> = _listFollowers
 
-    companion object {
-        private const val TAG = "FollowersViewModel"
-    }
-
     fun setListFollowers(username: String) {
         val client = ApiConfig.getApiService().getFollowers(username)
         client.enqueue(object : Callback<List<Items>> {
@@ -32,5 +28,9 @@ class FollowersViewModel : ViewModel() {
                 Log.e(TAG, "onFailure: ${t.message}")
             }
         })
+    }
+
+    companion object {
+        private const val TAG = "FollowersViewModel"
     }
 }

@@ -18,10 +18,6 @@ class FollowingViewModel : ViewModel() {
     private val _progressBar = MutableLiveData<Boolean>()
     val progressBar: LiveData<Boolean> = _progressBar
 
-    companion object {
-        private const val TAG = "FollowingViewModel"
-    }
-
     fun setListFollowing(username: String) {
         val client = ApiConfig.getApiService().getFollowing(username)
         client.enqueue(object : Callback<List<Items>> {
@@ -37,5 +33,9 @@ class FollowingViewModel : ViewModel() {
                 Log.e(TAG, "onFailure: ${t.message}")
             }
         })
+    }
+
+    companion object {
+        private const val TAG = "FollowingViewModel"
     }
 }

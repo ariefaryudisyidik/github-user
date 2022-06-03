@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.dicoding.ariefaryudisyidik.githubuser.R
+import com.dicoding.ariefaryudisyidik.githubuser.data.remote.retrofit.ApiConfig
 import com.dicoding.ariefaryudisyidik.githubuser.databinding.ActivityDetailBinding
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -16,16 +17,6 @@ class DetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailBinding
     private val viewModel: DetailViewModel by viewModels()
     private val mBundle = Bundle()
-
-    companion object {
-        const val EXTRA_USERNAME = "extra_username"
-
-        @StringRes
-        private val TAB_TITLES = intArrayOf(
-            R.string.tab_text_1,
-            R.string.tab_text_2
-        )
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,5 +62,15 @@ class DetailActivity : AppCompatActivity() {
                 tab.text = resources.getString(TAB_TITLES[position])
             }.attach()
         }
+    }
+
+    companion object {
+        const val EXTRA_USERNAME = "extra_username"
+
+        @StringRes
+        private val TAB_TITLES = intArrayOf(
+            R.string.tab_text_1,
+            R.string.tab_text_2
+        )
     }
 }

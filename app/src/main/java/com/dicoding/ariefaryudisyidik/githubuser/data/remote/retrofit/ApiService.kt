@@ -1,5 +1,6 @@
 package com.dicoding.ariefaryudisyidik.githubuser.data.remote.retrofit
 
+import com.dicoding.ariefaryudisyidik.githubuser.BuildConfig
 import com.dicoding.ariefaryudisyidik.githubuser.data.remote.response.Items
 import com.dicoding.ariefaryudisyidik.githubuser.data.remote.response.UserDetailsResponse
 import com.dicoding.ariefaryudisyidik.githubuser.data.remote.response.UserResponse
@@ -12,26 +13,30 @@ import retrofit2.http.Query
 interface ApiService {
 
     @GET("search/users")
-    @Headers("Authorization: token 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")
+    @Headers(authorization)
     fun getUser(
         @Query("q") username: String
     ): Call<UserResponse>
 
     @GET("users/{username}")
-    @Headers("Authorization: token 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")
+    @Headers(authorization)
     fun getUserDetails(
         @Path("username") username: String
     ): Call<UserDetailsResponse>
 
     @GET("users/{username}/followers")
-    @Headers("Authorization: token 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")
+    @Headers(authorization)
     fun getFollowers(
         @Path("username") username: String
     ): Call<List<Items>>
 
     @GET("users/{username}/following")
-    @Headers("Authorization: token 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")
+    @Headers(authorization)
     fun getFollowing(
         @Path("username") username: String
     ): Call<List<Items>>
+
+    companion object {
+        const val authorization = "Authorization: token ${BuildConfig.KEY}"
+    }
 }
