@@ -16,6 +16,7 @@
     <string name="dummy_location">Pittsburgh, PA, USA</string>
     <string name="dummy_company">Google, Inc.</string>
     <string name="image_profile">Image Profile</string>
+    <string name="user_not_found">User Not Found</string>
 
     <string-array name="username">
         <item>JakeWharton</item>

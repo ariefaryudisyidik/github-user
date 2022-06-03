@@ -52,18 +52,25 @@ class MainActivity : AppCompatActivity() {
 
     private fun showUser(list: List<Items>) {
         binding.apply {
-            val mainAdapter = MainAdapter(list)
-            rvUser.layoutManager = LinearLayoutManager(this@MainActivity)
-            rvUser.setHasFixedSize(true)
-            rvUser.adapter = mainAdapter
-            mainAdapter.setOnItemClickCallback(object : MainAdapter.OnItemClickCallback {
-                override fun onItemClicked(data: Items) {
-                    searchView.clearFocus()
-                    val detailIntent = Intent(this@MainActivity, DetailActivity::class.java)
-                    detailIntent.putExtra(DetailActivity.EXTRA_USERNAME, data.login)
-                    startActivity(detailIntent)
-                }
-            })
+            if (list.isEmpty()) {
+                rvUser.visibility = View.GONE
+                layoutEmpty.root.visibility = View.VISIBLE
+            } else {
+                rvUser.visibility = View.VISIBLE
+                layoutEmpty.root.visibility = View.GONE
+                val mainAdapter = MainAdapter(list)
+                rvUser.layoutManager = LinearLayoutManager(this@MainActivity)
+                rvUser.setHasFixedSize(true)
+                rvUser.adapter = mainAdapter
+                mainAdapter.setOnItemClickCallback(object : MainAdapter.OnItemClickCallback {
+                    override fun onItemClicked(data: Items) {
+                        searchView.clearFocus()
+                        val detailIntent = Intent(this@MainActivity, DetailActivity::class.java)
+                        detailIntent.putExtra(DetailActivity.EXTRA_USERNAME, data.login)
+                        startActivity(detailIntent)
+                    }
+                })
+            }
         }
     }
 }
