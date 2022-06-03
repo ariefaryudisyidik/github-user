@@ -33,7 +33,6 @@ class DetailActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         showUserDetails()
-        tabSetup()
     }
 
     private fun showLoading(isLoading: Boolean) {
@@ -43,13 +42,10 @@ class DetailActivity : AppCompatActivity() {
     private fun showUserDetails() {
         viewModel.progressBar.observe(this) { showLoading(it) }
         binding.apply {
-            val username = intent.getStringExtra(EXTRA_USERNAME)
+            val username = intent.getStringExtra(EXTRA_USERNAME).toString()
             mBundle.putString(EXTRA_USERNAME, username)
 
-            if (username != null) {
-                viewModel.setUserDetails(username)
-            }
-
+            viewModel.setUserDetails(username)
             viewModel.userDetails.observe(this@DetailActivity) { user ->
                 Glide.with(this@DetailActivity)
                     .load(user.avatarUrl)
@@ -61,6 +57,7 @@ class DetailActivity : AppCompatActivity() {
                 tvRepository.text = StringBuilder("${user.publicRepos}\nRepository")
                 tvFollowers.text = StringBuilder("${user.followers}\nFollowers")
                 tvFollowing.text = StringBuilder("${user.following}\nFollowing")
+                tabSetup()
             }
         }
     }
@@ -68,6 +65,7 @@ class DetailActivity : AppCompatActivity() {
     private fun tabSetup() {
         val sectionPagerAdapter = SectionPagerAdapter(this, mBundle)
         binding.apply {
+            tabLayout.visibility = View.VISIBLE
             viewPager.adapter = sectionPagerAdapter
             TabLayoutMediator(tabLayout, viewPager) { tab, position ->
                 tab.text = resources.getString(TAB_TITLES[position])
