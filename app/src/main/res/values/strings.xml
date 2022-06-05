@@ -16,4 +16,5 @@
     <string name="dummy_following">12\nFollowing</string>
     <string name="dummy_followers">56995\nFollowers</string>
     <string name="favorite">Favorite</string>
+    <string name="theme">theme</string>
 </resources>

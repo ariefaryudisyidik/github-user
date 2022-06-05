@@ -2,12 +2,14 @@ package com.dicoding.ariefaryudisyidik.githubuser.ui.main
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
 import android.view.View
 import android.widget.SearchView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.dicoding.ariefaryudisyidik.githubuser.R
 import com.dicoding.ariefaryudisyidik.githubuser.data.remote.response.Items
 import com.dicoding.ariefaryudisyidik.githubuser.databinding.ActivityMainBinding
 import com.dicoding.ariefaryudisyidik.githubuser.ui.detail.DetailActivity
@@ -28,6 +30,11 @@ class MainActivity : AppCompatActivity() {
         viewModel.progressBar.observe(this) { showLoading(it) }
         viewModel.users.observe(this) { showUser(it) }
         searchAction()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu)
+        return true
     }
 
     private fun showLoading(isLoading: Boolean) {

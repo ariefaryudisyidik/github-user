@@ -122,7 +122,7 @@
         app:elevation="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_favorite_grey" />
+        app:srcCompat="@drawable/ic_favorite_white" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
