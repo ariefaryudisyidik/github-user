@@ -16,11 +16,11 @@ data class UserResponse(
 
 data class Items(
 
-    @field:SerializedName("avatar_url")
-    val avatarUrl: String,
-
     @field:SerializedName("login")
     val login: String,
+
+    @field:SerializedName("avatar_url")
+    val avatarUrl: String,
 
     @field:SerializedName("html_url")
     val userUrl: String

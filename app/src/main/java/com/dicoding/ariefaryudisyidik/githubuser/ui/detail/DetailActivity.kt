@@ -8,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.dicoding.ariefaryudisyidik.githubuser.R
-import com.dicoding.ariefaryudisyidik.githubuser.data.remote.retrofit.ApiConfig
 import com.dicoding.ariefaryudisyidik.githubuser.databinding.ActivityDetailBinding
 import com.google.android.material.tabs.TabLayoutMediator
 
