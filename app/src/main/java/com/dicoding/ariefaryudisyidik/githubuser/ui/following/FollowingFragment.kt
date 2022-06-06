@@ -1,10 +1,9 @@
 package com.dicoding.ariefaryudisyidik.githubuser.ui.following
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.ariefaryudisyidik.githubuser.R
 import com.dicoding.ariefaryudisyidik.githubuser.data.Result
@@ -53,7 +52,7 @@ class FollowingFragment : Fragment(R.layout.fragment_following) {
                 }
                 is Result.Error -> {
                     progressBar.visibility = View.GONE
-                    result.error.let { Log.e("MainActivity", "showUser: $it") }
+                    Toast.makeText(requireContext(), result.error, Toast.LENGTH_SHORT).show()
                 }
             }
         }

@@ -1,8 +1,8 @@
 package com.dicoding.ariefaryudisyidik.githubuser.ui.followers
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.ariefaryudisyidik.githubuser.R
@@ -50,7 +50,7 @@ class FollowersFragment : Fragment(R.layout.fragment_followers) {
                     }
                 }
                 is Result.Error -> {
-                    result.error.let { Log.e("MainActivity", "showUser: $it") }
+                    Toast.makeText(requireContext(), result.error, Toast.LENGTH_SHORT).show()
                 }
             }
         }

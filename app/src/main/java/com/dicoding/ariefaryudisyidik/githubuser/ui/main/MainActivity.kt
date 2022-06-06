@@ -2,11 +2,11 @@ package com.dicoding.ariefaryudisyidik.githubuser.ui.main
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.SearchView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -86,7 +86,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 is Result.Error -> {
                     progressBar.visibility = View.GONE
-                    result.error.let { Log.e("MainActivity", "showUser: $it") }
+                    Toast.makeText(this@MainActivity, result.error, Toast.LENGTH_SHORT).show()
                 }
             }
         }

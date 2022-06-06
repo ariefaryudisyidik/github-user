@@ -1,8 +1,8 @@
 package com.dicoding.ariefaryudisyidik.githubuser.ui.detail
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
@@ -57,7 +57,7 @@ class DetailActivity : AppCompatActivity() {
                 }
                 is Result.Error -> {
                     progressBar.visibility = View.GONE
-                    result.error.let { Log.e("DetailActivity", "showUserDetails: $it") }
+                    Toast.makeText(this@DetailActivity, result.error, Toast.LENGTH_SHORT).show()
                 }
             }
         }
