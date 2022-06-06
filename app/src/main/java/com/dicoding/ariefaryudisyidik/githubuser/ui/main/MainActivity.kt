@@ -7,12 +7,12 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.SearchView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.ariefaryudisyidik.githubuser.R
 import com.dicoding.ariefaryudisyidik.githubuser.data.Result
+import com.dicoding.ariefaryudisyidik.githubuser.data.remote.response.Items
 import com.dicoding.ariefaryudisyidik.githubuser.databinding.ActivityMainBinding
 import com.dicoding.ariefaryudisyidik.githubuser.ui.favorite.FavoriteActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -52,37 +52,7 @@ class MainActivity : AppCompatActivity() {
         binding.apply {
             searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(username: String): Boolean {
-                    viewModel.searchUser(username).observe(this@MainActivity) { result ->
-                        when (result) {
-                            is Result.Loading -> progressBar.visibility = View.VISIBLE
-                            is Result.Success -> {
-                                progressBar.visibility = View.GONE
-                                val data = result.data
-                                Log.d("TAG", "onQueryTextSubmit: $data")
-                                lottieAnimationView.visibility = View.GONE
-                                if (data.isEmpty()) {
-                                    rvUser.visibility = View.GONE
-                                    layoutEmpty.root.visibility = View.VISIBLE
-                                } else {
-                                    rvUser.visibility = View.VISIBLE
-                                    layoutEmpty.root.visibility = View.GONE
-                                    val mainAdapter = MainAdapter(data)
-                                    rvUser.layoutManager = LinearLayoutManager(this@MainActivity)
-                                    rvUser.setHasFixedSize(true)
-                                    rvUser.adapter = mainAdapter
-                                }
-
-                            }
-                            is Result.Error -> {
-                                progressBar.visibility = View.GONE
-                                Toast.makeText(
-                                    this@MainActivity,
-                                    "Something wrong",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                            }
-                        }
-                    }
+                    viewModel.searchUser(username).observe(this@MainActivity) { showUser(it) }
                     searchView.clearFocus()
                     return true
                 }
@@ -91,6 +61,34 @@ class MainActivity : AppCompatActivity() {
                     return false
                 }
             })
+        }
+    }
+
+    private fun showUser(result: Result<List<Items>>) {
+        binding.apply {
+            when (result) {
+                is Result.Loading -> progressBar.visibility = View.VISIBLE
+                is Result.Success -> {
+                    progressBar.visibility = View.GONE
+                    lottieAnimationView.visibility = View.GONE
+                    val data = result.data
+                    if (data.isEmpty()) {
+                        rvUser.visibility = View.GONE
+                        layoutEmpty.root.visibility = View.VISIBLE
+                    } else {
+                        rvUser.visibility = View.VISIBLE
+                        layoutEmpty.root.visibility = View.GONE
+                        val mainAdapter = MainAdapter(data)
+                        rvUser.layoutManager = LinearLayoutManager(this@MainActivity)
+                        rvUser.setHasFixedSize(true)
+                        rvUser.adapter = mainAdapter
+                    }
+                }
+                is Result.Error -> {
+                    progressBar.visibility = View.GONE
+                    result.error.let { Log.e("MainActivity", "showUser: $it") }
+                }
+            }
         }
     }
 }

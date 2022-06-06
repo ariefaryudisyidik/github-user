@@ -20,5 +20,6 @@ class MainViewModel(private val userRepository: UserRepository) : ViewModel() {
         }
     }
 
-    fun searchUser(username: String) = userRepository.searchUser(username)
+    fun searchUser(username: String) =
+        userRepository.searchUser(username)
 }
