@@ -38,12 +38,12 @@ class FollowersFragment : Fragment(R.layout.fragment_followers) {
                 is Result.Success -> {
                     val data = result.data
                     if (data.isEmpty()) {
-                        rvFollowers.visibility = View.GONE
                         layoutEmpty.root.visibility = View.VISIBLE
+                        rvFollowers.visibility = View.GONE
                     } else {
-                        rvFollowers.visibility = View.VISIBLE
-                        layoutEmpty.root.visibility = View.GONE
                         val mainAdapter = MainAdapter(data)
+                        layoutEmpty.root.visibility = View.GONE
+                        rvFollowers.visibility = View.VISIBLE
                         rvFollowers.layoutManager = LinearLayoutManager(requireContext())
                         rvFollowers.setHasFixedSize(true)
                         rvFollowers.adapter = mainAdapter

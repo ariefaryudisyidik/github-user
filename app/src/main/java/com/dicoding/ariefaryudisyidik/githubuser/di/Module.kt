@@ -6,6 +6,7 @@ import com.dicoding.ariefaryudisyidik.githubuser.data.local.room.UserDatabase
 import com.dicoding.ariefaryudisyidik.githubuser.data.remote.retrofit.ApiConfig
 import com.dicoding.ariefaryudisyidik.githubuser.ui.detail.DetailViewModel
 import com.dicoding.ariefaryudisyidik.githubuser.ui.followers.FollowersViewModel
+import com.dicoding.ariefaryudisyidik.githubuser.ui.following.FollowingViewModel
 import com.dicoding.ariefaryudisyidik.githubuser.ui.main.MainViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -15,7 +16,7 @@ val viewModelModule = module {
     viewModel { MainViewModel(get()) }
     viewModel { DetailViewModel(get()) }
     viewModel { FollowersViewModel(get()) }
-//    viewModel { FollowingViewModel(get()) }
+    viewModel { FollowingViewModel(get()) }
 }
 
 val repositoryModule = module {
@@ -30,7 +31,8 @@ val databaseModule = module {
     factory { get<UserDatabase>().userDao }
     single {
         Room.databaseBuilder(
-            androidContext(), UserDatabase::class.java,
+            androidContext(),
+            UserDatabase::class.java,
             "User.db"
         ).allowMainThreadQueries().build()
     }

@@ -45,7 +45,7 @@ class UserRepository(
         }
     }
 
-    fun setFollowing(username: String): LiveData<Result<List<Items>>> = liveData {
+    fun getFollowing(username: String): LiveData<Result<List<Items>>> = liveData {
         emit(Result.Loading)
         try {
             val response = apiService.getFollowing(username)

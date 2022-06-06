@@ -73,12 +73,12 @@ class MainActivity : AppCompatActivity() {
                     lottieAnimationView.visibility = View.GONE
                     val data = result.data
                     if (data.isEmpty()) {
-                        rvUser.visibility = View.GONE
                         layoutEmpty.root.visibility = View.VISIBLE
+                        rvUser.visibility = View.GONE
                     } else {
-                        rvUser.visibility = View.VISIBLE
-                        layoutEmpty.root.visibility = View.GONE
                         val mainAdapter = MainAdapter(data)
+                        layoutEmpty.root.visibility = View.GONE
+                        rvUser.visibility = View.VISIBLE
                         rvUser.layoutManager = LinearLayoutManager(this@MainActivity)
                         rvUser.setHasFixedSize(true)
                         rvUser.adapter = mainAdapter
