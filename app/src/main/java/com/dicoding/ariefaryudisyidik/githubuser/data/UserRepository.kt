@@ -24,10 +24,31 @@ class UserRepository(
         }
     }
 
-    fun setUserDetail(username: String): LiveData<Result<UserDetailsResponse>> = liveData {
+    fun getUserDetails(username: String): LiveData<Result<UserDetailsResponse>> = liveData {
         emit(Result.Loading)
         try {
             val response = apiService.getUserDetails(username)
+            emit(Result.Success(response))
+        } catch (e: Exception) {
+            Log.e(TAG, "searchUser: ${e.message.toString()}")
+            emit(Result.Error(e.message.toString()))
+        }
+    }
+
+    fun getFollowers(username: String): LiveData<Result<List<Items>>> = liveData {
+        try {
+            val response = apiService.getFollowers(username)
+            emit(Result.Success(response))
+        } catch (e: Exception) {
+            Log.e(TAG, "searchUser: ${e.message.toString()}")
+            emit(Result.Error(e.message.toString()))
+        }
+    }
+
+    fun setFollowing(username: String): LiveData<Result<List<Items>>> = liveData {
+        emit(Result.Loading)
+        try {
+            val response = apiService.getFollowing(username)
             emit(Result.Success(response))
         } catch (e: Exception) {
             Log.e(TAG, "searchUser: ${e.message.toString()}")

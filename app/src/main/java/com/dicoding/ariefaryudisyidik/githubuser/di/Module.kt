@@ -5,6 +5,7 @@ import com.dicoding.ariefaryudisyidik.githubuser.data.UserRepository
 import com.dicoding.ariefaryudisyidik.githubuser.data.local.room.UserDatabase
 import com.dicoding.ariefaryudisyidik.githubuser.data.remote.retrofit.ApiConfig
 import com.dicoding.ariefaryudisyidik.githubuser.ui.detail.DetailViewModel
+import com.dicoding.ariefaryudisyidik.githubuser.ui.followers.FollowersViewModel
 import com.dicoding.ariefaryudisyidik.githubuser.ui.main.MainViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -13,6 +14,8 @@ import org.koin.dsl.module
 val viewModelModule = module {
     viewModel { MainViewModel(get()) }
     viewModel { DetailViewModel(get()) }
+    viewModel { FollowersViewModel(get()) }
+//    viewModel { FollowingViewModel(get()) }
 }
 
 val repositoryModule = module {

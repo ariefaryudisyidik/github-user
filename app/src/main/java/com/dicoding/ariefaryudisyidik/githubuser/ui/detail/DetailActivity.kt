@@ -32,11 +32,11 @@ class DetailActivity : AppCompatActivity() {
         binding.apply {
             val username = intent.getStringExtra(EXTRA_USERNAME).toString()
             mBundle.putString(EXTRA_USERNAME, username)
-            viewModel.setUserDetails(username).observe(this@DetailActivity) { getUserDetails(it) }
+            viewModel.getUserDetails(username).observe(this@DetailActivity) { setUserDetails(it) }
         }
     }
 
-    private fun getUserDetails(result: Result<UserDetailsResponse>) {
+    private fun setUserDetails(result: Result<UserDetailsResponse>) {
         binding.apply {
             when (result) {
                 is Result.Loading -> progressBar.visibility = View.VISIBLE

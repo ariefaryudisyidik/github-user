@@ -4,7 +4,6 @@ import com.dicoding.ariefaryudisyidik.githubuser.BuildConfig
 import com.dicoding.ariefaryudisyidik.githubuser.data.remote.response.Items
 import com.dicoding.ariefaryudisyidik.githubuser.data.remote.response.UserDetailsResponse
 import com.dicoding.ariefaryudisyidik.githubuser.data.remote.response.UserResponse
-import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.Path
@@ -26,15 +25,15 @@ interface ApiService {
 
     @GET("users/{username}/followers")
     @Headers(authorization)
-    fun getFollowers(
+    suspend fun getFollowers(
         @Path("username") username: String
-    ): Call<List<Items>>
+    ): List<Items>
 
     @GET("users/{username}/following")
     @Headers(authorization)
-    fun getFollowing(
+    suspend fun getFollowing(
         @Path("username") username: String
-    ): Call<List<Items>>
+    ): List<Items>
 
     companion object {
         const val authorization = "Authorization: token ${BuildConfig.KEY}"

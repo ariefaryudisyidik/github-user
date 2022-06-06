@@ -5,6 +5,6 @@ import com.dicoding.ariefaryudisyidik.githubuser.data.UserRepository
 
 class DetailViewModel(private val userRepository: UserRepository) : ViewModel() {
 
-    fun setUserDetails(username: String) =
-        userRepository.setUserDetail(username)
+    fun getUserDetails(username: String) =
+        userRepository.getUserDetails(username)
 }
