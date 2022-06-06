@@ -22,34 +22,34 @@ class FollowingFragment : Fragment(R.layout.fragment_following) {
         _binding = FragmentFollowingBinding.bind(view)
 
         val username = arguments?.getString(DetailActivity.EXTRA_USERNAME).toString()
-        viewModel.setListFollowing(username)
+//        viewModel.setListFollowing(username)
         viewModel.progressBar.observe(viewLifecycleOwner) { showLoading(it) }
-        viewModel.listFollowing.observe(viewLifecycleOwner) { showFollowing(it) }
+//        viewModel.listFollowing.observe(viewLifecycleOwner) { showFollowing(it) }
     }
 
     private fun showLoading(isLoading: Boolean) {
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
-    private fun showFollowing(list: List<Items>) {
-        binding.apply {
-            if (list.isEmpty()) {
-                rvFollowing.visibility = View.GONE
-                layoutEmpty.root.visibility = View.VISIBLE
-            } else {
-                rvFollowing.visibility = View.VISIBLE
-                layoutEmpty.root.visibility = View.GONE
-                val mainAdapter = MainAdapter(list)
-                rvFollowing.layoutManager = LinearLayoutManager(requireContext())
-                rvFollowing.setHasFixedSize(true)
-                rvFollowing.adapter = mainAdapter
-                mainAdapter.setOnItemClickCallback(object : MainAdapter.OnItemClickCallback {
-                    override fun onItemClicked(data: Items) {
-                    }
-                })
-            }
-        }
-    }
+//    private fun showFollowing(list: List<Items>) {
+//        binding.apply {
+//            if (list.isEmpty()) {
+//                rvFollowing.visibility = View.GONE
+//                layoutEmpty.root.visibility = View.VISIBLE
+//            } else {
+//                rvFollowing.visibility = View.VISIBLE
+//                layoutEmpty.root.visibility = View.GONE
+//                val mainAdapter = MainAdapter(list)
+//                rvFollowing.layoutManager = LinearLayoutManager(requireContext())
+//                rvFollowing.setHasFixedSize(true)
+//                rvFollowing.adapter = mainAdapter
+//                mainAdapter.setOnItemClickCallback(object : MainAdapter.OnItemClickCallback {
+//                    override fun onItemClicked(data: Items) {
+//                    }
+//                })
+//            }
+//        }
+//    }
 
     override fun onDestroy() {
         super.onDestroy()

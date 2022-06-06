@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -16,9 +17,15 @@
         android:theme="@style/Theme.GitHubUser"
         tools:targetApi="31">
         <activity
+            android:name=".ui.favorite.FavoriteActivity"
+            android:exported="false"
+            android:label="@string/favorite_user"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
             android:name=".ui.detail.DetailActivity"
             android:exported="false"
-            android:label="Detail User"
+            android:label="@string/detail_user"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity
@@ -33,7 +40,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

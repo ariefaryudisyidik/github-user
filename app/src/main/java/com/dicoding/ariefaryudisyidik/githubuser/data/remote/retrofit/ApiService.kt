@@ -14,9 +14,9 @@ interface ApiService {
 
     @GET("search/users")
     @Headers(authorization)
-    fun getUser(
+    suspend fun getUser(
         @Query("q") username: String
-    ): Call<UserResponse>
+    ): UserResponse
 
     @GET("users/{username}")
     @Headers(authorization)

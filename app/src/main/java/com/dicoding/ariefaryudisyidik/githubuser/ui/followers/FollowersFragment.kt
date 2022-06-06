@@ -22,29 +22,29 @@ class FollowersFragment : Fragment(R.layout.fragment_followers) {
         _binding = FragmentFollowersBinding.bind(view)
 
         val username = arguments?.getString(DetailActivity.EXTRA_USERNAME).toString()
-        viewModel.setListFollowers(username)
-        viewModel.listFollowers.observe(viewLifecycleOwner) { showFollowers(it) }
+//        viewModel.setListFollowers(username)
+//        viewModel.listFollowers.observe(viewLifecycleOwner) { showFollowers(it) }
     }
 
-    private fun showFollowers(list: List<Items>) {
-        binding.apply {
-            if (list.isEmpty()) {
-                rvFollowers.visibility = View.GONE
-                layoutEmpty.root.visibility = View.VISIBLE
-            } else {
-                rvFollowers.visibility = View.VISIBLE
-                layoutEmpty.root.visibility = View.GONE
-                val mainAdapter = MainAdapter(list)
-                rvFollowers.layoutManager = LinearLayoutManager(requireContext())
-                rvFollowers.setHasFixedSize(true)
-                rvFollowers.adapter = mainAdapter
-                mainAdapter.setOnItemClickCallback(object : MainAdapter.OnItemClickCallback {
-                    override fun onItemClicked(data: Items) {
-                    }
-                })
-            }
-        }
-    }
+//    private fun showFollowers(list: List<Items>) {
+//        binding.apply {
+//            if (list.isEmpty()) {
+//                rvFollowers.visibility = View.GONE
+//                layoutEmpty.root.visibility = View.VISIBLE
+//            } else {
+//                rvFollowers.visibility = View.VISIBLE
+//                layoutEmpty.root.visibility = View.GONE
+//                val mainAdapter = MainAdapter(list)
+//                rvFollowers.layoutManager = LinearLayoutManager(requireContext())
+//                rvFollowers.setHasFixedSize(true)
+//                rvFollowers.adapter = mainAdapter
+//                mainAdapter.setOnItemClickCallback(object : MainAdapter.OnItemClickCallback {
+//                    override fun onItemClicked(data: Items) {
+//                    }
+//                })
+//            }
+//        }
+//    }
 
     override fun onDestroy() {
         super.onDestroy()

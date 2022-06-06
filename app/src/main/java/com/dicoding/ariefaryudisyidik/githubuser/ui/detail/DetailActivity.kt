@@ -5,8 +5,6 @@ import android.view.View
 import androidx.activity.viewModels
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.dicoding.ariefaryudisyidik.githubuser.R
 import com.dicoding.ariefaryudisyidik.githubuser.databinding.ActivityDetailBinding
 import com.google.android.material.tabs.TabLayoutMediator
@@ -22,35 +20,35 @@ class DetailActivity : AppCompatActivity() {
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        showUserDetails()
+//        showUserDetails()
     }
 
     private fun showLoading(isLoading: Boolean) {
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
-    private fun showUserDetails() {
-        viewModel.progressBar.observe(this) { showLoading(it) }
-        binding.apply {
-            val username = intent.getStringExtra(EXTRA_USERNAME).toString()
-            mBundle.putString(EXTRA_USERNAME, username)
-
-            viewModel.setUserDetails(username)
-            viewModel.userDetails.observe(this@DetailActivity) { user ->
-                Glide.with(this@DetailActivity)
-                    .load(user.avatarUrl)
-                    .circleCrop()
-                    .transition(DrawableTransitionOptions.withCrossFade())
-                    .into(ivProfile)
-                tvFullName.text = user.name
-                tvUsername.text = user.login
-                tvRepository.text = StringBuilder("${user.publicRepos}\nRepository")
-                tvFollowers.text = StringBuilder("${user.followers}\nFollowers")
-                tvFollowing.text = StringBuilder("${user.following}\nFollowing")
-                tabSetup()
-            }
-        }
-    }
+//    private fun showUserDetails() {
+//        viewModel.progressBar.observe(this) { showLoading(it) }
+//        binding.apply {
+//            val username = intent.getStringExtra(EXTRA_USERNAME).toString()
+//            mBundle.putString(EXTRA_USERNAME, username)
+//
+//            viewModel.setUserDetails(username)
+//            viewModel.userDetails.observe(this@DetailActivity) { user ->
+//                Glide.with(this@DetailActivity)
+//                    .load(user.avatarUrl)
+//                    .circleCrop()
+//                    .transition(DrawableTransitionOptions.withCrossFade())
+//                    .into(ivProfile)
+//                tvFullName.text = user.name
+//                tvUsername.text = user.login
+//                tvRepository.text = StringBuilder("${user.publicRepos}\nRepository")
+//                tvFollowers.text = StringBuilder("${user.followers}\nFollowers")
+//                tvFollowing.text = StringBuilder("${user.following}\nFollowing")
+//                tabSetup()
+//            }
+//        }
+//    }
 
     private fun tabSetup() {
         val sectionPagerAdapter = SectionPagerAdapter(this, mBundle)
