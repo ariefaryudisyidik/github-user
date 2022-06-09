@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.ariefaryudisyidik.githubuser.R
 import com.dicoding.ariefaryudisyidik.githubuser.data.Result
-import com.dicoding.ariefaryudisyidik.githubuser.data.remote.response.Items
+import com.dicoding.ariefaryudisyidik.githubuser.data.local.entity.UserEntity
 import com.dicoding.ariefaryudisyidik.githubuser.databinding.FragmentFollowingBinding
 import com.dicoding.ariefaryudisyidik.githubuser.ui.detail.DetailActivity
 import com.dicoding.ariefaryudisyidik.githubuser.ui.main.MainAdapter
@@ -28,10 +28,10 @@ class FollowingFragment : Fragment(R.layout.fragment_following) {
 
     private fun showFollowing() {
         val username = arguments?.getString(DetailActivity.EXTRA_USERNAME).toString()
-        viewModel.getFollowing(username).observe(viewLifecycleOwner) { setFollowing(it) }
+//        viewModel.getFollowing(username).observe(viewLifecycleOwner) { setFollowing(it) }
     }
 
-    private fun setFollowing(result: Result<List<Items>>) {
+    private fun setFollowing(result: Result<List<UserEntity>>) {
         binding.apply {
             when (result) {
                 is Result.Loading -> progressBar.visibility = View.VISIBLE
@@ -43,6 +43,7 @@ class FollowingFragment : Fragment(R.layout.fragment_following) {
                         rvFollowing.visibility = View.GONE
                     } else {
                         val mainAdapter = MainAdapter(data)
+                        mainAdapter.submitList(data)
                         layoutEmpty.root.visibility = View.GONE
                         rvFollowing.visibility = View.VISIBLE
                         rvFollowing.layoutManager = LinearLayoutManager(requireContext())

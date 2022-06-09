@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.ariefaryudisyidik.githubuser.R
 import com.dicoding.ariefaryudisyidik.githubuser.data.Result
-import com.dicoding.ariefaryudisyidik.githubuser.data.remote.response.Items
+import com.dicoding.ariefaryudisyidik.githubuser.data.local.entity.UserEntity
 import com.dicoding.ariefaryudisyidik.githubuser.databinding.FragmentFollowersBinding
 import com.dicoding.ariefaryudisyidik.githubuser.ui.detail.DetailActivity
 import com.dicoding.ariefaryudisyidik.githubuser.ui.main.MainAdapter
@@ -28,10 +28,10 @@ class FollowersFragment : Fragment(R.layout.fragment_followers) {
 
     private fun showFollowers() {
         val username = arguments?.getString(DetailActivity.EXTRA_USERNAME).toString()
-        viewModel.getFollowers(username).observe(viewLifecycleOwner) { setFollowers(it) }
+//        viewModel.getFollowers(username).observe(viewLifecycleOwner) { setFollowers(it) }
     }
 
-    private fun setFollowers(result: Result<List<Items>>) {
+    private fun setFollowers(result: Result<List<UserEntity>>) {
         binding.apply {
             when (result) {
                 is Result.Loading -> {}
@@ -42,6 +42,7 @@ class FollowersFragment : Fragment(R.layout.fragment_followers) {
                         rvFollowers.visibility = View.GONE
                     } else {
                         val mainAdapter = MainAdapter(data)
+                        mainAdapter.submitList(data)
                         layoutEmpty.root.visibility = View.GONE
                         rvFollowers.visibility = View.VISIBLE
                         rvFollowers.layoutManager = LinearLayoutManager(requireContext())

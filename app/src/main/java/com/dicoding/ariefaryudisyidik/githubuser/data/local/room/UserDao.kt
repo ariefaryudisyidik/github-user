@@ -8,20 +8,14 @@ import com.dicoding.ariefaryudisyidik.githubuser.data.local.entity.UserEntity
 interface UserDao {
 
     @Query("SELECT * FROM user")
-    fun getUser(): LiveData<List<UserEntity>>
-
-    @Query("SELECT * FROM user WHERE favorite = 1")
     fun getFavoriteUser(): LiveData<List<UserEntity>>
 
+    @Query("SELECT count(*) FROM user WHERE user.login = :login")
+    fun checkUser(login: String): Int
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insertUser(favoriteUser: List<UserEntity>)
+    suspend fun addFavoriteUser(user: UserEntity)
 
-    @Update
-    suspend fun updateUser(user: UserEntity)
-
-    @Query("DELETE FROM user WHERE favorite = 0")
-    suspend fun deleteAll()
-
-    @Query("SELECT EXISTS(SELECT * FROM user WHERE login = :login AND favorite = 1)")
-    suspend fun isUserFavorite(login: String): Boolean
+    @Query("DELETE FROM user WHERE user.login = :login")
+    suspend fun deleteFavoriteUser(login: String): Int
 }

@@ -12,7 +12,7 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.ariefaryudisyidik.githubuser.R
 import com.dicoding.ariefaryudisyidik.githubuser.data.Result
-import com.dicoding.ariefaryudisyidik.githubuser.data.remote.response.Items
+import com.dicoding.ariefaryudisyidik.githubuser.data.local.entity.UserEntity
 import com.dicoding.ariefaryudisyidik.githubuser.databinding.ActivityMainBinding
 import com.dicoding.ariefaryudisyidik.githubuser.ui.favorite.FavoriteActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -64,7 +64,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun showUser(result: Result<List<Items>>) {
+    private fun showUser(result: Result<List<UserEntity>>) {
         binding.apply {
             when (result) {
                 is Result.Loading -> progressBar.visibility = View.VISIBLE
@@ -77,6 +77,7 @@ class MainActivity : AppCompatActivity() {
                         rvUser.visibility = View.GONE
                     } else {
                         val mainAdapter = MainAdapter(data)
+                        mainAdapter.submitList(data)
                         layoutEmpty.root.visibility = View.GONE
                         rvUser.visibility = View.VISIBLE
                         rvUser.layoutManager = LinearLayoutManager(this@MainActivity)
