@@ -112,7 +112,6 @@ class DetailActivity : AppCompatActivity() {
         }
     }
 
-
     companion object {
         const val EXTRA_USERNAME = "extra_username"
         const val EXTRA_USER = "extra_user"

@@ -28,7 +28,7 @@ class FollowingFragment : Fragment(R.layout.fragment_following) {
 
     private fun showFollowing() {
         val username = arguments?.getString(DetailActivity.EXTRA_USERNAME).toString()
-//        viewModel.getFollowing(username).observe(viewLifecycleOwner) { setFollowing(it) }
+        viewModel.getFollowing(username).observe(viewLifecycleOwner) { setFollowing(it) }
     }
 
     private fun setFollowing(result: Result<List<UserEntity>>) {

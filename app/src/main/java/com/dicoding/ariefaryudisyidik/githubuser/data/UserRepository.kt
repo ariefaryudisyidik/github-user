@@ -17,8 +17,8 @@ class UserRepository(
     fun searchUser(username: String): LiveData<Result<List<UserEntity>>> = liveData {
         emit(Result.Loading)
         try {
-            val items = apiService.getUser(username).items
-            emit(Result.Success(Mapper.mapResponsesToEntities(items)))
+            val response = apiService.getUser(username).items
+            emit(Result.Success(Mapper.mapResponsesToEntities(response)))
         } catch (e: Exception) {
             Log.e(TAG, "searchUser: ${e.message.toString()}")
             emit(Result.Error(e.message.toString()))
@@ -36,41 +36,28 @@ class UserRepository(
         }
     }
 
-//    fun getFollowers(username: String): LiveData<Result<List<UserEntity>>> =
-//        liveData {
-//            try {
-//                val response = apiService.getFollowers(username)
-//
-//                emit(Result.Success(followersList))
-//            } catch (e: Exception) {
-//                Log.e(TAG, "searchUser: ${e.message.toString()}")
-//                emit(Result.Error(e.message.toString()))
-//            }
-//            val localData: LiveData<Result<List<UserEntity>>> =
-//                userDao.getUser().map { Result.Success(it) }
-//            emitSource(localData)
-//        }
+    fun getFollowers(username: String): LiveData<Result<List<UserEntity>>> =
+        liveData {
+            try {
+                val response = apiService.getFollowers(username)
+                emit(Result.Success(Mapper.mapResponsesToEntities(response)))
+            } catch (e: Exception) {
+                Log.e(TAG, "searchUser: ${e.message.toString()}")
+                emit(Result.Error(e.message.toString()))
+            }
+        }
 
-//    fun getFollowing(username: String): LiveData<Result<List<UserEntity>>> =
-//        liveData {
-//            emit(Result.Loading)
-//            try {
-//                val response = apiService.getFollowing(username)
-//                val followingList = response.map { item ->
-//                    val isFavorite = userDao.isUserFavorite(item.login)
-//                    UserEntity(
-//                        item.login,
-//                        item.avatarUrl,
-//                        item.userUrl,
-//                        isFavorite
-//                    )
-//                }
-//                emit(Result.Success(followingList))
-//            } catch (e: Exception) {
-//                Log.e(TAG, "searchUser: ${e.message.toString()}")
-//                emit(Result.Error(e.message.toString()))
-//            }
-//        }
+    fun getFollowing(username: String): LiveData<Result<List<UserEntity>>> =
+        liveData {
+            emit(Result.Loading)
+            try {
+                val response = apiService.getFollowing(username)
+                emit(Result.Success(Mapper.mapResponsesToEntities(response)))
+            } catch (e: Exception) {
+                Log.e(TAG, "searchUser: ${e.message.toString()}")
+                emit(Result.Error(e.message.toString()))
+            }
+        }
 
 //    fun getFavoriteUser(): LiveData<List<UserEntity>> = userDao.getFavoriteUser()
 

@@ -5,6 +5,6 @@ import com.dicoding.ariefaryudisyidik.githubuser.data.UserRepository
 
 class FollowingViewModel(private val userRepository: UserRepository) : ViewModel() {
 
-//    fun getFollowing(username: String) =
-//        userRepository.getFollowing(username)
+    fun getFollowing(username: String) =
+        userRepository.getFollowing(username)
 }
