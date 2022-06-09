@@ -1,10 +1,7 @@
 package com.dicoding.ariefaryudisyidik.githubuser
 
 import android.app.Application
-import com.dicoding.ariefaryudisyidik.githubuser.di.databaseModule
-import com.dicoding.ariefaryudisyidik.githubuser.di.networkModule
-import com.dicoding.ariefaryudisyidik.githubuser.di.repositoryModule
-import com.dicoding.ariefaryudisyidik.githubuser.di.viewModelModule
+import com.dicoding.ariefaryudisyidik.githubuser.di.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -18,6 +15,7 @@ class MyApplication : Application() {
             modules(
                 listOf(
                     viewModelModule,
+                    preferencesModule,
                     repositoryModule,
                     networkModule,
                     databaseModule

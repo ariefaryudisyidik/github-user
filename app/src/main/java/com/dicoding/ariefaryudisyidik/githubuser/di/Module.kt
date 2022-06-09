@@ -9,6 +9,7 @@ import com.dicoding.ariefaryudisyidik.githubuser.ui.favorite.FavoriteViewModel
 import com.dicoding.ariefaryudisyidik.githubuser.ui.followers.FollowersViewModel
 import com.dicoding.ariefaryudisyidik.githubuser.ui.following.FollowingViewModel
 import com.dicoding.ariefaryudisyidik.githubuser.ui.main.MainViewModel
+import com.dicoding.ariefaryudisyidik.githubuser.utils.ThemePreferences
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -19,6 +20,10 @@ val viewModelModule = module {
     viewModel { FollowersViewModel(get()) }
     viewModel { FollowingViewModel(get()) }
     viewModel { FavoriteViewModel(get()) }
+}
+
+val preferencesModule = module {
+    factory { ThemePreferences(get()) }
 }
 
 val repositoryModule = module {
