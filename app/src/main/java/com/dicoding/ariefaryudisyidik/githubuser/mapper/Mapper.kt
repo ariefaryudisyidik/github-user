@@ -2,7 +2,6 @@ package com.dicoding.ariefaryudisyidik.githubuser.mapper
 
 import com.dicoding.ariefaryudisyidik.githubuser.data.local.entity.UserEntity
 import com.dicoding.ariefaryudisyidik.githubuser.data.remote.response.Items
-import com.dicoding.ariefaryudisyidik.githubuser.data.remote.response.UserResponse
 
 object Mapper {
 

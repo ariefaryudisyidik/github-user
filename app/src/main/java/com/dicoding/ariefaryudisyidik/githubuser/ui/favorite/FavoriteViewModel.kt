@@ -5,6 +5,6 @@ import com.dicoding.ariefaryudisyidik.githubuser.data.UserRepository
 
 class FavoriteViewModel(private val userRepository: UserRepository) : ViewModel() {
 
-//    fun getFavoriteUser() =
-//        userRepository.getFavoriteUser()
+    fun getFavoriteUser() =
+        userRepository.getFavoriteUser()
 }

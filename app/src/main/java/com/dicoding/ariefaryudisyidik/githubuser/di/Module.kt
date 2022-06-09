@@ -5,6 +5,7 @@ import com.dicoding.ariefaryudisyidik.githubuser.data.UserRepository
 import com.dicoding.ariefaryudisyidik.githubuser.data.local.room.UserDatabase
 import com.dicoding.ariefaryudisyidik.githubuser.data.remote.retrofit.ApiConfig
 import com.dicoding.ariefaryudisyidik.githubuser.ui.detail.DetailViewModel
+import com.dicoding.ariefaryudisyidik.githubuser.ui.favorite.FavoriteViewModel
 import com.dicoding.ariefaryudisyidik.githubuser.ui.followers.FollowersViewModel
 import com.dicoding.ariefaryudisyidik.githubuser.ui.following.FollowingViewModel
 import com.dicoding.ariefaryudisyidik.githubuser.ui.main.MainViewModel
@@ -17,6 +18,7 @@ val viewModelModule = module {
     viewModel { DetailViewModel(get()) }
     viewModel { FollowersViewModel(get()) }
     viewModel { FollowingViewModel(get()) }
+    viewModel { FavoriteViewModel(get()) }
 }
 
 val repositoryModule = module {

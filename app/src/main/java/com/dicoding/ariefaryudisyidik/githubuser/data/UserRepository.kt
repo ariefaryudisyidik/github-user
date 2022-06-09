@@ -59,12 +59,17 @@ class UserRepository(
             }
         }
 
-//    fun getFavoriteUser(): LiveData<List<UserEntity>> = userDao.getFavoriteUser()
-
-//    suspend fun setFavoriteUser(user: UserEntity, favoriteState: Boolean) {
-//        user.isFavorite = favoriteState
-//        userDao.updateUser(user)
-//    }
+    fun getFavoriteUser(): LiveData<Result<List<UserEntity>>> = liveData {
+        emit(Result.Loading)
+        try {
+            val favoriteData: LiveData<Result<List<UserEntity>>> =
+                userDao.getFavoriteUser().map { Result.Success(it) }
+            emitSource(favoriteData)
+        } catch (e: Exception) {
+            Log.e(TAG, "searchUser: ${e.message.toString()}")
+            emit(Result.Error(e.message.toString()))
+        }
+    }
 
     fun checkUser(login: String) = userDao.checkUser(login)
     suspend fun addFavoriteUser(user: UserEntity) = userDao.addFavoriteUser(user)
