@@ -9,6 +9,7 @@ import android.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.content.ContextCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.ariefaryudisyidik.githubuser.R
@@ -51,6 +52,11 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
+        if (nightMode) {
+            menu.getItem(0).icon = ContextCompat.getDrawable(this, R.drawable.ic_light_mode)
+        } else {
+            menu.getItem(0).icon = ContextCompat.getDrawable(this, R.drawable.ic_night_mode)
+        }
         return true
     }
 
