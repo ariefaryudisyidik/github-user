@@ -17,15 +17,12 @@ import com.dicoding.ariefaryudisyidik.githubuser.data.Result
 import com.dicoding.ariefaryudisyidik.githubuser.data.local.entity.UserEntity
 import com.dicoding.ariefaryudisyidik.githubuser.databinding.ActivityMainBinding
 import com.dicoding.ariefaryudisyidik.githubuser.ui.favorite.FavoriteActivity
-import com.dicoding.ariefaryudisyidik.githubuser.utils.ThemePreferences
-import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private val viewModel by viewModel<MainViewModel>()
-    private val preferences by inject<ThemePreferences>()
     private var nightMode: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,12 +38,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupTheme() {
-        nightMode = preferences.nightMode()
-        if (nightMode) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-
-        } else {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        viewModel.getThemeMode().observe(this) { isNightModeActive ->
+            nightMode = if (isNightModeActive) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                false
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                true
+            }
         }
     }
 
@@ -64,13 +63,7 @@ class MainActivity : AppCompatActivity() {
         when (item.itemId) {
             R.id.theme_menu -> {
                 binding.searchView.clearFocus()
-                if (nightMode) {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                    preferences.nightModeOff()
-                } else {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                    preferences.nightModeOn()
-                }
+                viewModel.saveThemeMode(nightMode)
             }
             R.id.favorite_menu -> {
                 binding.searchView.clearFocus()

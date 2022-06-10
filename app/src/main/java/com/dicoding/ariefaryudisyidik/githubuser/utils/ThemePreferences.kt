@@ -1,27 +1,25 @@
 package com.dicoding.ariefaryudisyidik.githubuser.utils
 
 import android.content.Context
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.booleanPreferencesKey
+import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.preferencesDataStore
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 
-class ThemePreferences(context: Context) {
+class ThemePreferences(private val context: Context) {
 
-    private val pref = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+    private val THEME_KEY = booleanPreferencesKey("theme_pref")
 
-    fun nightMode() = pref.getBoolean(NIGHT_MODE, false)
+    fun getThemeMode(): Flow<Boolean> = context.dataStore.data.map { it[THEME_KEY] ?: false }
 
-    fun nightModeOn() {
-        val editor = pref.edit()
-        editor.putBoolean(NIGHT_MODE, true)
-        editor.apply()
-    }
-
-    fun nightModeOff() {
-        val editor = pref.edit()
-        editor.putBoolean(NIGHT_MODE, false)
-        editor.apply()
+    suspend fun saveThemeMode(isNightModeActive: Boolean) {
+        context.dataStore.edit { it[THEME_KEY] = isNightModeActive }
     }
 
     companion object {
-        private const val PREFS_NAME = "theme_pref"
-        private const val NIGHT_MODE = "night_mode"
+        private val Context.dataStore: DataStore<Preferences> by preferencesDataStore("theme_pref")
     }
 }

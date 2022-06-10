@@ -15,7 +15,7 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val viewModelModule = module {
-    viewModel { MainViewModel(get()) }
+    viewModel { MainViewModel(get(), get()) }
     viewModel { DetailViewModel(get()) }
     viewModel { FollowersViewModel(get()) }
     viewModel { FollowingViewModel(get()) }
@@ -23,7 +23,7 @@ val viewModelModule = module {
 }
 
 val preferencesModule = module {
-    factory { ThemePreferences(get()) }
+    single { ThemePreferences(get()) }
 }
 
 val repositoryModule = module {
