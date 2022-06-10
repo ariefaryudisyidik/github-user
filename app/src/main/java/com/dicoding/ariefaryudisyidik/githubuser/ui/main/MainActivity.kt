@@ -43,6 +43,7 @@ class MainActivity : AppCompatActivity() {
         nightMode = preferences.nightMode()
         if (nightMode) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         }
@@ -56,6 +57,7 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.theme_menu -> {
+                binding.searchView.clearFocus()
                 if (nightMode) {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
                     preferences.nightModeOff()
@@ -65,6 +67,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
             R.id.favorite_menu -> {
+                binding.searchView.clearFocus()
                 startActivity(Intent(this, FavoriteActivity::class.java))
             }
         }

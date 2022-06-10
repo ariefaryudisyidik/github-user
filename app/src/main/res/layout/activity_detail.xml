@@ -31,7 +31,7 @@
         android:id="@+id/tv_full_name"
         style="@style/Text.Bold"
         android:layout_marginTop="8dp"
-        android:textColor="@color/dark_black"
+        android:textColor="?colorPrimary"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="@+id/iv_profile"
         app:layout_constraintStart_toStartOf="@+id/iv_profile"
@@ -42,7 +42,7 @@
         android:id="@+id/tv_username"
         style="@style/Text.Normal"
         android:layout_marginTop="-4dp"
-        android:textColor="@color/dark_grey"
+        android:textColor="?android:textColorSecondary"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@+id/tv_full_name"
         app:layout_constraintStart_toStartOf="@+id/tv_full_name"
@@ -90,6 +90,7 @@
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
         style="@style/TabLayout"
+        android:background="@android:color/transparent"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="6dp"
@@ -103,6 +104,7 @@
         android:id="@+id/view_pager"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -123,7 +125,7 @@
         app:elevation="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_favorite_red" />
+        app:srcCompat="@drawable/ic_favorite" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"

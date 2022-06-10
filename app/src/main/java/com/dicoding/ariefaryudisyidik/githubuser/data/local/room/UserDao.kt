@@ -9,7 +9,6 @@ import com.dicoding.ariefaryudisyidik.githubuser.data.local.entity.UserEntity
 
 @Dao
 interface UserDao {
-
     @Query("SELECT * FROM user")
     fun getFavoriteUser(): LiveData<List<UserEntity>>
 

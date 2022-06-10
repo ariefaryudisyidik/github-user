@@ -73,7 +73,7 @@ class DetailActivity : AppCompatActivity() {
             val favorite = viewModel.checkUser(user.login)
             var isFavorite = if (favorite > 0) {
                 fabFavorite.setColorFilter(
-                    ContextCompat.getColor(this@DetailActivity, R.color.red)
+                    ContextCompat.getColor(this@DetailActivity, R.color.pink)
                 )
                 true
             } else {
@@ -93,7 +93,7 @@ class DetailActivity : AppCompatActivity() {
                 } else {
                     viewModel.addFavoriteUser(user)
                     fabFavorite.setColorFilter(
-                        ContextCompat.getColor(this@DetailActivity, R.color.red)
+                        ContextCompat.getColor(this@DetailActivity, R.color.pink)
                     )
                     true
                 }

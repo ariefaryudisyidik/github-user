@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#000000</color>
-    <color name="dark_black">#0D1117</color>
-    <color name="light_black">#21262D</color>
     <color name="blue">#2085FF</color>
     <color name="dark_blue">#0059CB</color>
     <color name="grey">#B5BCC4</color>
     <color name="dark_grey">#57606A</color>
     <color name="light_grey">#F6F8FA</color>
+    <color name="pink">#ffa9a3</color>
+    <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
-    <color name="red">#FF0000</color>
+
+    <!-- Dark Theme -->
+    <color name="dark_300">#1E2B38</color>
+    <color name="dark_700">#121A22</color>
+    <color name="dark_900">#0D141B</color>
 </resources>
