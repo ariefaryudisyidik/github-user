@@ -3,6 +3,8 @@ package com.dicoding.ariefaryudisyidik.githubuser.ui.main
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
@@ -10,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.ariefaryudisyidik.githubuser.R
 import com.dicoding.ariefaryudisyidik.githubuser.databinding.ActivityMainBinding
 import com.dicoding.ariefaryudisyidik.githubuser.model.User
+import com.dicoding.ariefaryudisyidik.githubuser.ui.about.AboutActivity
 import com.dicoding.ariefaryudisyidik.githubuser.ui.detail.DetailActivity
 
 class MainActivity : AppCompatActivity() {
@@ -29,6 +32,20 @@ class MainActivity : AppCompatActivity() {
 
         list.addAll(listUsers)
         showListUser()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.about_menu -> {
+                startActivity(Intent(this, AboutActivity::class.java))
+            }
+        }
+        return true
     }
 
     private val listUsers: ArrayList<User>

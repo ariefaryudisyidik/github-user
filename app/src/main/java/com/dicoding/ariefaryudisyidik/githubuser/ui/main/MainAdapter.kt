@@ -3,6 +3,8 @@ package com.dicoding.ariefaryudisyidik.githubuser.ui.main
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.dicoding.ariefaryudisyidik.githubuser.databinding.ItemUserBinding
 import com.dicoding.ariefaryudisyidik.githubuser.model.User
 
@@ -27,7 +29,11 @@ class MainAdapter(private val listUsers: ArrayList<User>) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(user: User) {
             with(binding) {
-                civProfile.setImageResource(user.avatar)
+                Glide.with(itemView)
+                    .load(user.avatar)
+                    .circleCrop()
+                    .transition(DrawableTransitionOptions.withCrossFade())
+                    .into(ivProfile)
                 tvName.text = user.name
                 tvUsername.text = user.username
                 tvRepository.text = StringBuilder("${user.repository} Repository")

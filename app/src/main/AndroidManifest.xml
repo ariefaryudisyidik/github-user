@@ -14,9 +14,17 @@
         android:theme="@style/Theme.GitHubUser"
         tools:targetApi="31">
         <activity
+            android:name=".ui.about.AboutActivity"
+            android:exported="false"
+            android:label="@string/about"
+            android:parentActivityName=".ui.about.AboutActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
             android:name=".ui.detail.DetailActivity"
             android:exported="false"
-            android:label="Detail User"
+            android:label="@string/detail_user"
+            android:parentActivityName=".ui.detail.DetailActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity
@@ -31,7 +39,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

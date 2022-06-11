@@ -4,6 +4,16 @@
     <string name="username">Username</string>
     <string name="location">Location</string>
     <string name="repository">Repository</string>
+    <string name="data_repository">%d\nRepository</string>
+    <string name="data_followers">%d\nFollowers</string>
+    <string name="data_following">%d\nFollowing</string>
+    <string name="profile_photo">Profile Photo</string>
+    <string name="about">About</string>
+    <string name="detail_user">Detail User</string>
+
+    <string name="my_photo">https://lh3.googleusercontent.com/a-/AOh14Gi2K_9G-W9WYvcqXS8hdR4Vh-vHIcNVZBGrpGInHQ=s347-p-rw-no</string>
+    <string name="my_name">Arief Aryudi Syidik</string>
+    <string name="my_email">ariefaryudisyidik@gmail.com</string>
 
     <string name="dummy_name">Jake Wharton</string>
     <string name="dummy_username">JakeWharton</string>
