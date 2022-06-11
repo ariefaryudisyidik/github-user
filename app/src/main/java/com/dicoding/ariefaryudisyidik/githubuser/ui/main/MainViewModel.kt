@@ -1,14 +1,14 @@
 package com.dicoding.ariefaryudisyidik.githubuser.ui.main
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
+import com.dicoding.ariefaryudisyidik.githubuser.data.Result
 import com.dicoding.ariefaryudisyidik.githubuser.data.UserRepository
+import com.dicoding.ariefaryudisyidik.githubuser.data.local.entity.UserEntity
 import com.dicoding.ariefaryudisyidik.githubuser.utils.ThemePreferences
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class MainViewModel(
@@ -19,6 +19,9 @@ class MainViewModel(
     private val _isLoading = MutableStateFlow(true)
     val isLoading = _isLoading.asStateFlow()
 
+    private val _users = MutableLiveData<Result<List<UserEntity>>>()
+    val users: LiveData<Result<List<UserEntity>>> = _users
+
     init {
         viewModelScope.launch {
             delay(1)
@@ -26,8 +29,13 @@ class MainViewModel(
         }
     }
 
-    fun searchUser(username: String) =
-        userRepository.searchUser(username)
+    fun searchUser(username: String) {
+        viewModelScope.launch {
+            userRepository.searchUser(username).asFlow().collect {
+                _users.postValue(it)
+            }
+        }
+    }
 
     fun getThemeMode(): LiveData<Boolean> = pref.getThemeMode().asLiveData()
 

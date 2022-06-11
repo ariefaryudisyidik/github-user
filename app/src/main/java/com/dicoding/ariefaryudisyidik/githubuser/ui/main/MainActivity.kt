@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private val viewModel by viewModel<MainViewModel>()
-    private var nightMode: Boolean = false
+    private var lightMode: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen().apply {
@@ -35,11 +35,12 @@ class MainActivity : AppCompatActivity() {
 
         setupTheme()
         searchAction()
+        getUser()
     }
 
     private fun setupTheme() {
         viewModel.getThemeMode().observe(this) { isNightModeActive ->
-            nightMode = if (isNightModeActive) {
+            lightMode = if (isNightModeActive) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                 false
             } else {
@@ -51,10 +52,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
-        if (nightMode) {
-            menu.getItem(0).icon = ContextCompat.getDrawable(this, R.drawable.ic_light_mode)
-        } else {
+        if (lightMode) {
             menu.getItem(0).icon = ContextCompat.getDrawable(this, R.drawable.ic_night_mode)
+        } else {
+            menu.getItem(0).icon = ContextCompat.getDrawable(this, R.drawable.ic_light_mode)
         }
         return true
     }
@@ -63,7 +64,7 @@ class MainActivity : AppCompatActivity() {
         when (item.itemId) {
             R.id.theme_menu -> {
                 binding.searchView.clearFocus()
-                viewModel.saveThemeMode(nightMode)
+                viewModel.saveThemeMode(lightMode)
             }
             R.id.favorite_menu -> {
                 binding.searchView.clearFocus()
@@ -77,7 +78,7 @@ class MainActivity : AppCompatActivity() {
         binding.apply {
             searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(username: String): Boolean {
-                    viewModel.searchUser(username).observe(this@MainActivity) { showUser(it) }
+                    viewModel.searchUser(username)
                     searchView.clearFocus()
                     return true
                 }
@@ -87,6 +88,10 @@ class MainActivity : AppCompatActivity() {
                 }
             })
         }
+    }
+
+    private fun getUser() {
+        viewModel.users.observe(this) { showUser(it) }
     }
 
     private fun showUser(result: Result<List<UserEntity>>) {

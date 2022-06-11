@@ -12,7 +12,14 @@ object ApiConfig {
             if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY
             else HttpLoggingInterceptor.Level.NONE
         }
-        val client = OkHttpClient.Builder().addInterceptor(logger).build()
+        val client = OkHttpClient.Builder()
+            .addInterceptor(logger)
+            .addInterceptor { chain ->
+                val request = chain.request().newBuilder()
+                    .addHeader("Authorization", BuildConfig.TOKEN_API)
+                chain.proceed(request.build())
+            }
+            .build()
         return Retrofit.Builder()
             .baseUrl("https://api.github.com/")
             .client(client)

@@ -4,7 +4,7 @@ import com.dicoding.ariefaryudisyidik.githubuser.data.local.entity.UserEntity
 import com.dicoding.ariefaryudisyidik.githubuser.data.remote.response.Items
 
 object Mapper {
-    fun mapResponseToEntity(items: Items) = UserEntity(
+    private fun mapResponseToEntity(items: Items) = UserEntity(
         items.login,
         items.avatarUrl,
         items.userUrl

@@ -14,7 +14,7 @@ android {
         targetSdk 32
         versionCode 1
         versionName "1.0"
-        buildConfigField("String", "KEY", '"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"')
+        buildConfigField("String", "TOKEN_API", '"token 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"')
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

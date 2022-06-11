@@ -11,8 +11,6 @@ import kotlinx.coroutines.flow.map
 
 class ThemePreferences(private val context: Context) {
 
-    private val THEME_KEY = booleanPreferencesKey("theme_pref")
-
     fun getThemeMode(): Flow<Boolean> = context.dataStore.data.map { it[THEME_KEY] ?: false }
 
     suspend fun saveThemeMode(isNightModeActive: Boolean) {
@@ -21,5 +19,6 @@ class ThemePreferences(private val context: Context) {
 
     companion object {
         private val Context.dataStore: DataStore<Preferences> by preferencesDataStore("theme_pref")
+        private val THEME_KEY = booleanPreferencesKey("theme_pref")
     }
 }

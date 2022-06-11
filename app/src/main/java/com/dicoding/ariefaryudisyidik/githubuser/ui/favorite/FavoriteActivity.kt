@@ -21,7 +21,12 @@ class FavoriteActivity : AppCompatActivity() {
         binding = ActivityFavoriteBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        viewModel.getFavoriteUser().observe(this) { showFavoriteUser(it) }
+        setupView()
+    }
+
+    private fun setupView() {
+        viewModel.getFavoriteUser()
+        viewModel.users.observe(this) { showFavoriteUser(it) }
     }
 
     private fun showFavoriteUser(result: Result<List<UserEntity>>) {

@@ -33,7 +33,8 @@ class DetailActivity : AppCompatActivity() {
     private fun showUserDetails() {
         binding.apply {
             val username = intent.getStringExtra(EXTRA_USERNAME).toString()
-            viewModel.getUserDetails(username).observe(this@DetailActivity) { setUserDetails(it) }
+            viewModel.getUserDetails(username)
+            viewModel.users.observe(this@DetailActivity) { setUserDetails(it) }
             mBundle.putString(EXTRA_USERNAME, username)
         }
     }
@@ -53,9 +54,10 @@ class DetailActivity : AppCompatActivity() {
                         .into(ivProfile)
                     tvFullName.text = data.name
                     tvUsername.text = data.login
-                    tvRepository.text = StringBuilder("${data.publicRepos}\nRepository")
-                    tvFollowers.text = StringBuilder("${data.followers}\nFollowers")
-                    tvFollowing.text = StringBuilder("${data.following}\nFollowing")
+                    tvRepository.text =
+                        resources.getString(R.string.data_public_repos, data.publicRepos)
+                    tvFollowers.text = resources.getString(R.string.data_followers, data.followers)
+                    tvFollowing.text = resources.getString(R.string.data_following, data.following)
                     tabSetup()
                     favoriteClick()
                 }

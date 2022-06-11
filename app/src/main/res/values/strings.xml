@@ -10,6 +10,10 @@
     <string name="image_profile">Image Profile</string>
     <string name="user_not_found">User Not Found</string>
 
+    <string name="data_public_repos">%d \nRepository</string>
+    <string name="data_followers">%d \nFolllowers</string>
+    <string name="data_following">%d \nFollowing</string>
+
     <string name="dummy_name">Jake Wharton</string>
     <string name="dummy_username">JakeWharton</string>
     <string name="dummy_repository">102\nRepository</string>
