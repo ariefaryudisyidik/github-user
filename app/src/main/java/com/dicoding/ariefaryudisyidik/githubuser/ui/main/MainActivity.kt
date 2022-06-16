@@ -110,7 +110,6 @@ class MainActivity : AppCompatActivity() {
                         mainAdapter.submitList(data)
                         layoutEmpty.root.visibility = View.GONE
                         rvUser.visibility = View.VISIBLE
-                        rvUser.layoutManager = LinearLayoutManager(this@MainActivity)
                         rvUser.setHasFixedSize(true)
                         rvUser.adapter = mainAdapter
                     }

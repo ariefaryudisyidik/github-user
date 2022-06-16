@@ -47,7 +47,6 @@ class FollowingFragment : Fragment(R.layout.fragment_following) {
                         mainAdapter.submitList(data)
                         layoutEmpty.root.visibility = View.GONE
                         rvFollowing.visibility = View.VISIBLE
-                        rvFollowing.layoutManager = LinearLayoutManager(requireContext())
                         rvFollowing.setHasFixedSize(true)
                         rvFollowing.adapter = mainAdapter
                     }
