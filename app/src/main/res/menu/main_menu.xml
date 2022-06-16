@@ -2,12 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/theme_menu"
+        android:id="@+id/menu_theme"
         android:icon="@drawable/ic_night_mode"
         android:title="@string/theme"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/favorite_menu"
+        android:id="@+id/menu_favorite"
         android:icon="@drawable/ic_favorite"
         android:title="@string/favorite"
         app:showAsAction="ifRoom" />

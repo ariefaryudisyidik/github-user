@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.menu_main, menu)
+        menuInflater.inflate(R.menu.main_menu, menu)
         if (lightMode) {
             menu.getItem(0).icon = ContextCompat.getDrawable(this, R.drawable.ic_night_mode)
         } else {
@@ -62,11 +62,11 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.theme_menu -> {
+            R.id.menu_theme -> {
                 binding.searchView.clearFocus()
                 viewModel.saveThemeMode(lightMode)
             }
-            R.id.favorite_menu -> {
+            R.id.menu_favorite -> {
                 binding.searchView.clearFocus()
                 startActivity(Intent(this, FavoriteActivity::class.java))
             }
