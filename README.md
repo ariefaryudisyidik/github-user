@@ -1,3 +1,3 @@
 # GitHub User
 
-![App Preview](https://user-images.githubusercontent.com/59298779/211728312-0e2a17a4-791d-413d-9f0f-0ecdd15ad88e.png)
+![Github User](https://user-images.githubusercontent.com/59298779/211729939-9db5e798-b407-4878-b0fc-b0488727bbf6.png)
